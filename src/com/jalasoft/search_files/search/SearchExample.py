@@ -13,10 +13,11 @@ for mfile in listdir("/"):
 print ("Next example\n\n")
 
 # Esta función nos proporcionará, en cada iteración, el path actual, la lista de carpetas contenidas en ella y la lista de archivos contenidos en ella
-for (path, ficheros, archivos) in walk("/"):
+#for (path, ficheros, archivos) in walk("/"):
+for (path, ficheros, archivos) in walk(getcwd()):
     print (path)
     print (ficheros)
-    #print (archivos)
+    print (archivos)
 
 # class Finder:
 #     matches = []

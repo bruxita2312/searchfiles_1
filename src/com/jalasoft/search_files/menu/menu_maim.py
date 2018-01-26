@@ -35,7 +35,9 @@ class Menu:
                   print ("{0} it is no valid option".format(election))
 
      def search_name(self):
-         name=self.valid.search(filter)
+         '''name= self.valid.search(filter)'''
+         path = input("Enter Path")
+         name= input ("enter name")
          self.search_by_name(name)
 
 
@@ -43,3 +45,7 @@ class Menu:
      def quit (self):
          print ("Bye bye :)")
          sys.exit(0)
+
+         
+     if __name__ == "__main__":
+         Menu() .run()

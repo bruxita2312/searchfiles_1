@@ -1,51 +1,71 @@
 import sys
+'''import Validator'''
+
 
 class Menu:
-    '''display a  Menu that serponse to select an option'''
+    '''Muestra un menu y responde a elecciones cuando se ejecuta.'''
 
     def __init__(self):
-     self.valid = valid()
-     self.elections ={
-        "1": self.search_by_name,
-        "2": self.search_by_size,
-        "3": self.search_by_extension,
-        "4": self. quit
-     }
+        '''self.validator = Validator()'''
+        self.elections = {
+            1: self.search_by_name,
+            2: self.search_by_extension,
+            3: self.search_by_size,
+            4: self.quit
+        }
+
+    def show_menu(self):
+        print("_*_*_*_*_*_ Menu _*_*_*_*_*_")
+        print(" 1 Search by Name")
+        print(" 2 Search by Extension")
+        print(" 3 Search by Size")
+        print(" 4 quit")
 
 
-     def show_menu(self):
-         print ("""
-         Search Menu
-         1 Search by name
-         2 Search by side
-         3 Search by extension
-         4 Exit
-         """)
+    def run(self):
+
+        while True:
+            self.show_menu()
+            election = int(input("enter an option:  "))
+
+            action = self.elections.get(election, None)
+            print self.elections[election]
 
 
-     def run (self):
-          '''display menu and response the user election'''
-          while True:
-              self.show_menu()
-              election= input("Enter an option:")
-              action= self.elections.get(election)
-              if action:
-                  action()
-              else:
-                  print ("{0} it is no valid option".format(election))
-
-     def search_name(self):
-         '''name= self.valid.search(filter)'''
-         path = input("Enter Path")
-         name= input ("enter name")
-         self.search_by_name(name)
+            #DANEEEEEEEEEEEE aca necesito que me vuelva un trueeeee...helps meee#
+            #if action:
+             #   action()
+            #else:
+             #
+                #   print("{0} option not valid".format(election))
 
 
+    def search_by_name (self):
+        path =input("Enter path")
+        '''true = self.validator.search(filter)'''
+        name= input("Enter name")
+        '''true = self.validator.search(filter)'''
+        print ("path is "+path+"name: "+name)
 
-     def quit (self):
-         print ("Bye bye :)")
-         sys.exit(0)
 
-         
-     if __name__ == "__main__":
-         Menu() .run()
+    def search_by_extension(self):
+        path = input("Enter path")
+        '''true = self.validator.search(filter)'''
+        name = input("Enter name")
+        '''true = self.validator.search(filter)'''
+        print ("path is " + path + "name: " + name)
+
+    def search_by_size(self):
+        path = input("Enter path")
+        '''true = self.validator.search(filter)'''
+        name = input("Enter name")
+        '''true = self.validator.search(filter)'''
+        print ("path is " + path + "name: " + name)
+
+    def quit(self):
+        print("Bye Bye >)")
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    Menu().run()

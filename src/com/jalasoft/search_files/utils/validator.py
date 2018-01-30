@@ -1,8 +1,13 @@
-import os;
+import os
+#import logging
 
-path1 = 'C:\\Users'
+#logging.basicConfig(filename="../../../../../log/validator.log", level=logging.DEBUG,format='%(levelname)s : %(asctime)s : %(message)s')
 
-class validator:
+
+class Validator:
+    def __init__(self):
+        pass
+
     def is_menu(self, menu, limit):
         res_menu_validator = False
 
@@ -39,7 +44,7 @@ class validator:
             print("Incorrect Path, try " + str(intentos) + " attempts")
         return res_path
 
-    def is_file(self,value, intentos=0):
+    def is_file(self, value, intentos=0):
         {}
 
     def response_status(self, response_dict):
@@ -48,3 +53,14 @@ class validator:
             if response_dict[response]['status'] == "Fail":
                 status = "Fail"
         return status
+
+
+if __name__ == "__main__":
+    path1 = 'C:\\Users'
+    path2 = 'C:\\Usecccccrs'
+    path3 = ''
+
+    validator = Validator()
+    print(validator.is_path(path1, 4))
+    print(validator.is_path(path2))
+    print(validator.is_path(path3),2)

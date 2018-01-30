@@ -109,3 +109,10 @@ for (path, ficheros, archivos) in walk(getcwd()):
 # http://www.alvarohurtado.es/leer-carpetas-y-archivos-con-python/
 # https://www.guru99.com/learn-python-main-function-with-examples-understand-main.html
 # http://librosweb.es/libro/python/capitulo_10/modulos_de_sistema.html
+
+
+shpfiles = []
+for dirpath, subdirs, files in os.walk(path):
+    for x in files:
+        if x.endswith(".shp"):
+            shpfiles.append(os.path.join(dirpath, x))

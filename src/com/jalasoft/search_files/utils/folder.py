@@ -1,4 +1,4 @@
-class MyFolder:
+class MyFolder(object):
     def __init__(self, name, path, abspath, size, cdate):
         self.name = name
         self.size=size
@@ -6,6 +6,18 @@ class MyFolder:
         self.abspath = abspath
         self.cdate = cdate
         self.files = []
+
+    def get_name(self):
+        return self.name
+
+    def get_size(self):
+        return self.size
+
+    def get_path(self):
+        return self.path
+
+    def get_abspath(self):
+        return self.abspath
 
     def set_name(self, name):
         self.name = name

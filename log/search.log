@@ -1,0 +1,198 @@
+INFO : 2018-01-29 23:54:09,243 : Searching files naming sales
+DEBUG : 2018-01-29 23:54:12,319 : FILE::: d:/mio\www\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+DEBUG : 2018-01-29 23:54:13,443 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:54:13,475 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\customer\tab\view\sales.phtml  
+DEBUG : 2018-01-29 23:54:13,506 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\promo\salesrulejs.phtml  
+DEBUG : 2018-01-29 23:54:13,553 : FILE::: d:/mio\www\rac\app\design\frontend\base\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:54:13,646 : FILE::: d:/mio\www\rac\app\design\frontend\default\iphone\layout\sales.xml  
+DEBUG : 2018-01-29 23:54:13,662 : FILE::: d:/mio\www\rac\app\design\frontend\default\modern\layout\sales.xml  
+DEBUG : 2018-01-29 23:54:13,803 : FILE::: d:/mio\www\rac\js\mage\adminhtml\sales.js  
+DEBUG : 2018-01-29 23:54:14,868 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7232.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:54:14,868 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7398.one (El 28-02-2017).one  
+DEBUG : 2018-01-29 23:54:14,868 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:54:14,868 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7232.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:54:14,868 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:54:21,614 : FILE::: d:/respaldo\xampp\htdocs\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+INFO : 2018-01-29 23:54:22,103 : Searching folders naming one
+DEBUG : 2018-01-29 23:54:22,181 : FOLDER::: d:/Fotos\mangas\l-dk\ch0-moeros-kei-seifuku-danshi-oneshot-bes 
+DEBUG : 2018-01-29 23:54:22,197 : FOLDER::: d:/Fotos\mangas\LEIDOS\ane-doki-ane-doki\vol2-ch12-la-cosa-que-ponen-esas-letras-juntas-bes 
+DEBUG : 2018-01-29 23:54:22,337 : FOLDER::: d:/mio\www\arteycemento\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:54:22,447 : FOLDER::: d:/mio\www\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:54:22,556 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers 
+DEBUG : 2018-01-29 23:54:22,556 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers\sql\moneybookers_setup 
+DEBUG : 2018-01-29 23:54:22,603 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Block\Report\Shopcart\Abandoned 
+DEBUG : 2018-01-29 23:54:22,650 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Model\System\Config\Clone 
+DEBUG : 2018-01-29 23:54:23,106 : FOLDER::: d:/mio\www\rac\app\design\adminhtml\default\default\template\moneybookers 
+DEBUG : 2018-01-29 23:54:23,169 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\moneybookers 
+DEBUG : 2018-01-29 23:54:23,184 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,184 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,200 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,216 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone 
+DEBUG : 2018-01-29 23:54:23,216 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,216 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,231 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:54:23,294 : FOLDER::: d:/mio\www\rac\js\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:54:23,434 : FOLDER::: d:/mio\www\rac\skin\adminhtml\default\default\images\moneybookers 
+DEBUG : 2018-01-29 23:54:23,450 : FOLDER::: d:/mio\www\rac\skin\frontend\base\default\images\moneybookers 
+DEBUG : 2018-01-29 23:54:23,450 : FOLDER::: d:/mio\www\rac\skin\frontend\default\iphone 
+DEBUG : 2018-01-29 23:54:23,481 : FOLDER::: d:/mio\www\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:54:23,559 : FOLDER::: d:/MisDocs\andy proyecto\pds agil\programacionextrema.org-articulos-designdead.es_files 
+DEBUG : 2018-01-29 23:54:23,716 : FOLDER::: d:/MisDocs\Java Master Application Developer\4. Construyendo Aplicaciones Distribuidas con Web Services y EJB 
+DEBUG : 2018-01-29 23:54:23,716 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:54:23,716 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:54:23,731 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:54:23,731 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:54:23,731 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:54:23,731 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Alumno\03   MyBatis – Otras operaciones 
+DEBUG : 2018-01-29 23:54:23,747 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Instructor\03 MyBatis - Otras operaciones 
+DEBUG : 2018-01-29 23:54:24,028 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblFormularioPublicaciones 
+DEBUG : 2018-01-29 23:54:24,028 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblInstitucionesAsociadas 
+DEBUG : 2018-01-29 23:54:24,028 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblSubvencionesxusuario 
+DEBUG : 2018-01-29 23:54:24,091 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\postulantes\publicaciones 
+DEBUG : 2018-01-29 23:54:24,481 : FOLDER::: d:/MisDocs\trabajos\institui\scss\foundation\components 
+DEBUG : 2018-01-29 23:54:24,513 : FOLDER::: d:/MisDocs\trabajos\neco\indicadores\codigo\theme\plugins\input-mask\phone-codes 
+DEBUG : 2018-01-29 23:54:24,794 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\obligaciones 
+DEBUG : 2018-01-29 23:54:24,794 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\opciones 
+DEBUG : 2018-01-29 23:54:24,794 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__sunass\obligaciones 
+DEBUG : 2018-01-29 23:54:24,888 : FOLDER::: d:/Musica\Shakira\Dónde Están los Ladrones- 
+DEBUG : 2018-01-29 23:54:25,140 : FOLDER::: d:/respaldo\xampp\htdocs\ccmp\wp-content\themes\open\versiones 
+DEBUG : 2018-01-29 23:54:25,187 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:54:25,265 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_1\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:54:25,327 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_2\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:54:25,468 : FOLDER::: d:/respaldo\xampp\htdocs\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+INFO : 2018-01-29 23:54:25,546 : Searching files with size 9968
+DEBUG : 2018-01-29 23:54:33,580 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:54:33,580 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:54:39,102 : FILE::: d:/MisDocs\Virtual Machines\RFALCONIH-DV02\caches\GuestAppsCache\appData\9c4d713e22689de7523e05efb2ca1150.appicon  ::::: SIZE::::: 9968
+INFO : 2018-01-29 23:55:43,381 : Searching files naming sales
+DEBUG : 2018-01-29 23:55:46,556 : FILE::: d:/mio\www\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+DEBUG : 2018-01-29 23:55:47,681 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:55:47,713 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\customer\tab\view\sales.phtml  
+DEBUG : 2018-01-29 23:55:47,744 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\promo\salesrulejs.phtml  
+DEBUG : 2018-01-29 23:55:47,791 : FILE::: d:/mio\www\rac\app\design\frontend\base\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:55:47,869 : FILE::: d:/mio\www\rac\app\design\frontend\default\iphone\layout\sales.xml  
+DEBUG : 2018-01-29 23:55:47,900 : FILE::: d:/mio\www\rac\app\design\frontend\default\modern\layout\sales.xml  
+DEBUG : 2018-01-29 23:55:48,059 : FILE::: d:/mio\www\rac\js\mage\adminhtml\sales.js  
+DEBUG : 2018-01-29 23:55:49,108 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7232.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:55:49,108 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7398.one (El 28-02-2017).one  
+DEBUG : 2018-01-29 23:55:49,108 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:55:49,108 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7232.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:55:49,108 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:55:55,803 : FILE::: d:/respaldo\xampp\htdocs\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+INFO : 2018-01-29 23:55:56,288 : Searching folders naming one
+DEBUG : 2018-01-29 23:55:56,350 : FOLDER::: d:/Fotos\mangas\l-dk\ch0-moeros-kei-seifuku-danshi-oneshot-bes 
+DEBUG : 2018-01-29 23:55:56,366 : FOLDER::: d:/Fotos\mangas\LEIDOS\ane-doki-ane-doki\vol2-ch12-la-cosa-que-ponen-esas-letras-juntas-bes 
+DEBUG : 2018-01-29 23:55:56,522 : FOLDER::: d:/mio\www\arteycemento\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:55:56,647 : FOLDER::: d:/mio\www\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:55:56,757 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers 
+DEBUG : 2018-01-29 23:55:56,757 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers\sql\moneybookers_setup 
+DEBUG : 2018-01-29 23:55:56,819 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Block\Report\Shopcart\Abandoned 
+DEBUG : 2018-01-29 23:55:56,850 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Model\System\Config\Clone 
+DEBUG : 2018-01-29 23:55:57,306 : FOLDER::: d:/mio\www\rac\app\design\adminhtml\default\default\template\moneybookers 
+DEBUG : 2018-01-29 23:55:57,368 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\moneybookers 
+DEBUG : 2018-01-29 23:55:57,368 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,399 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,415 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,415 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone 
+DEBUG : 2018-01-29 23:55:57,431 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,431 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,431 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:55:57,524 : FOLDER::: d:/mio\www\rac\js\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:55:57,665 : FOLDER::: d:/mio\www\rac\skin\adminhtml\default\default\images\moneybookers 
+DEBUG : 2018-01-29 23:55:57,681 : FOLDER::: d:/mio\www\rac\skin\frontend\base\default\images\moneybookers 
+DEBUG : 2018-01-29 23:55:57,681 : FOLDER::: d:/mio\www\rac\skin\frontend\default\iphone 
+DEBUG : 2018-01-29 23:55:57,696 : FOLDER::: d:/mio\www\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:55:57,774 : FOLDER::: d:/MisDocs\andy proyecto\pds agil\programacionextrema.org-articulos-designdead.es_files 
+DEBUG : 2018-01-29 23:55:57,946 : FOLDER::: d:/MisDocs\Java Master Application Developer\4. Construyendo Aplicaciones Distribuidas con Web Services y EJB 
+DEBUG : 2018-01-29 23:55:57,946 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:55:57,946 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:55:57,962 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:55:57,962 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:55:57,978 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:55:57,978 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Alumno\03   MyBatis – Otras operaciones 
+DEBUG : 2018-01-29 23:55:57,978 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Instructor\03 MyBatis - Otras operaciones 
+DEBUG : 2018-01-29 23:55:58,587 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblFormularioPublicaciones 
+DEBUG : 2018-01-29 23:55:58,587 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblInstitucionesAsociadas 
+DEBUG : 2018-01-29 23:55:58,587 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblSubvencionesxusuario 
+DEBUG : 2018-01-29 23:55:58,665 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\postulantes\publicaciones 
+DEBUG : 2018-01-29 23:55:59,056 : FOLDER::: d:/MisDocs\trabajos\institui\scss\foundation\components 
+DEBUG : 2018-01-29 23:55:59,101 : FOLDER::: d:/MisDocs\trabajos\neco\indicadores\codigo\theme\plugins\input-mask\phone-codes 
+DEBUG : 2018-01-29 23:55:59,353 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\obligaciones 
+DEBUG : 2018-01-29 23:55:59,353 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\opciones 
+DEBUG : 2018-01-29 23:55:59,353 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__sunass\obligaciones 
+DEBUG : 2018-01-29 23:55:59,446 : FOLDER::: d:/Musica\Shakira\Dónde Están los Ladrones- 
+DEBUG : 2018-01-29 23:55:59,712 : FOLDER::: d:/respaldo\xampp\htdocs\ccmp\wp-content\themes\open\versiones 
+DEBUG : 2018-01-29 23:55:59,759 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:55:59,853 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_1\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:55:59,915 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_2\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:56:00,071 : FOLDER::: d:/respaldo\xampp\htdocs\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+INFO : 2018-01-29 23:56:00,153 : Searching files with size 9968
+DEBUG : 2018-01-29 23:56:07,838 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:56:07,838 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:56:13,264 : FILE::: d:/MisDocs\Virtual Machines\RFALCONIH-DV02\caches\GuestAppsCache\appData\9c4d713e22689de7523e05efb2ca1150.appicon  ::::: SIZE::::: 9968
+INFO : 2018-01-29 23:57:03,719 : Searching files naming sales
+DEBUG : 2018-01-29 23:57:06,707 : FILE::: d:/mio\www\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+DEBUG : 2018-01-29 23:57:07,828 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:57:07,859 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\customer\tab\view\sales.phtml  
+DEBUG : 2018-01-29 23:57:07,890 : FILE::: d:/mio\www\rac\app\design\adminhtml\default\default\template\promo\salesrulejs.phtml  
+DEBUG : 2018-01-29 23:57:07,937 : FILE::: d:/mio\www\rac\app\design\frontend\base\default\layout\sales.xml  
+DEBUG : 2018-01-29 23:57:08,015 : FILE::: d:/mio\www\rac\app\design\frontend\default\iphone\layout\sales.xml  
+DEBUG : 2018-01-29 23:57:08,046 : FILE::: d:/mio\www\rac\app\design\frontend\default\modern\layout\sales.xml  
+DEBUG : 2018-01-29 23:57:08,187 : FILE::: d:/mio\www\rac\js\mage\adminhtml\sales.js  
+DEBUG : 2018-01-29 23:57:09,365 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7232.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:57:09,365 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7398.one (El 28-02-2017).one  
+DEBUG : 2018-01-29 23:57:09,365 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  
+DEBUG : 2018-01-29 23:57:09,365 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7232.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:57:09,365 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  
+DEBUG : 2018-01-29 23:57:16,146 : FILE::: d:/respaldo\xampp\htdocs\mixtica\wp-content\themes\mixtica\page-templates\tpl_sucursales.php  
+INFO : 2018-01-29 23:57:16,632 : Searching folders naming one
+DEBUG : 2018-01-29 23:57:16,695 : FOLDER::: d:/Fotos\mangas\l-dk\ch0-moeros-kei-seifuku-danshi-oneshot-bes 
+DEBUG : 2018-01-29 23:57:16,726 : FOLDER::: d:/Fotos\mangas\LEIDOS\ane-doki-ane-doki\vol2-ch12-la-cosa-que-ponen-esas-letras-juntas-bes 
+DEBUG : 2018-01-29 23:57:16,867 : FOLDER::: d:/mio\www\arteycemento\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:57:16,973 : FOLDER::: d:/mio\www\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:57:17,082 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers 
+DEBUG : 2018-01-29 23:57:17,082 : FOLDER::: d:/mio\www\rac\app\code\community\Phoenix\Moneybookers\sql\moneybookers_setup 
+DEBUG : 2018-01-29 23:57:17,145 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Block\Report\Shopcart\Abandoned 
+DEBUG : 2018-01-29 23:57:17,192 : FOLDER::: d:/mio\www\rac\app\code\core\Mage\Adminhtml\Model\System\Config\Clone 
+DEBUG : 2018-01-29 23:57:17,635 : FOLDER::: d:/mio\www\rac\app\design\adminhtml\default\default\template\moneybookers 
+DEBUG : 2018-01-29 23:57:17,697 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\moneybookers 
+DEBUG : 2018-01-29 23:57:17,713 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,729 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,729 : FOLDER::: d:/mio\www\rac\app\design\frontend\base\default\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,744 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone 
+DEBUG : 2018-01-29 23:57:17,760 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,760 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\downloadable\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,760 : FOLDER::: d:/mio\www\rac\app\design\frontend\default\iphone\template\persistent\checkout\onepage 
+DEBUG : 2018-01-29 23:57:17,822 : FOLDER::: d:/mio\www\rac\js\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:57:17,979 : FOLDER::: d:/mio\www\rac\skin\adminhtml\default\default\images\moneybookers 
+DEBUG : 2018-01-29 23:57:17,979 : FOLDER::: d:/mio\www\rac\skin\frontend\base\default\images\moneybookers 
+DEBUG : 2018-01-29 23:57:17,979 : FOLDER::: d:/mio\www\rac\skin\frontend\default\iphone 
+DEBUG : 2018-01-29 23:57:18,010 : FOLDER::: d:/mio\www\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+DEBUG : 2018-01-29 23:57:18,088 : FOLDER::: d:/MisDocs\andy proyecto\pds agil\programacionextrema.org-articulos-designdead.es_files 
+DEBUG : 2018-01-29 23:57:18,260 : FOLDER::: d:/MisDocs\Java Master Application Developer\4. Construyendo Aplicaciones Distribuidas con Web Services y EJB 
+DEBUG : 2018-01-29 23:57:18,260 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:57:18,260 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Alumno\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:57:18,275 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\02 Componentes Struts2 
+DEBUG : 2018-01-29 23:57:18,275 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:57:18,291 : FOLDER::: d:/MisDocs\Java Master Application Developer\1. Construyendo Capa Modelo Vista Controlador (MVC) con Struts2, JSF y PrimeFaces\Instructor\Instructor\05 Aplicaciones JSF 
+DEBUG : 2018-01-29 23:57:18,291 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Alumno\03   MyBatis – Otras operaciones 
+DEBUG : 2018-01-29 23:57:18,291 : FOLDER::: d:/MisDocs\Java Master Application Developer\2. Construyendo Capa de Persistencia con Ibatis e Hibernate\Instructor\03 MyBatis - Otras operaciones 
+DEBUG : 2018-01-29 23:57:18,604 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblFormularioPublicaciones 
+DEBUG : 2018-01-29 23:57:18,604 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblInstitucionesAsociadas 
+DEBUG : 2018-01-29 23:57:18,604 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\created\tblSubvencionesxusuario 
+DEBUG : 2018-01-29 23:57:18,666 : FOLDER::: d:/MisDocs\trabajos\concytec\20131113.ventanilla\ventanilla\web\postulantes\publicaciones 
+DEBUG : 2018-01-29 23:57:19,057 : FOLDER::: d:/MisDocs\trabajos\institui\scss\foundation\components 
+DEBUG : 2018-01-29 23:57:19,107 : FOLDER::: d:/MisDocs\trabajos\neco\indicadores\codigo\theme\plugins\input-mask\phone-codes 
+DEBUG : 2018-01-29 23:57:19,371 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\obligaciones 
+DEBUG : 2018-01-29 23:57:19,371 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__eps\opciones 
+DEBUG : 2018-01-29 23:57:19,371 : FOLDER::: d:/MisDocs\trabajos\sunass\sunass\pantallas__sunass\obligaciones 
+DEBUG : 2018-01-29 23:57:19,465 : FOLDER::: d:/Musica\Shakira\Dónde Están los Ladrones- 
+DEBUG : 2018-01-29 23:57:19,731 : FOLDER::: d:/respaldo\xampp\htdocs\ccmp\wp-content\themes\open\versiones 
+DEBUG : 2018-01-29 23:57:19,777 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:57:19,855 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_1\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:57:19,918 : FOLDER::: d:/respaldo\xampp\htdocs\cepodo_2\tinymce\jscripts\tiny_mce\plugins\noneditable 
+DEBUG : 2018-01-29 23:57:20,058 : FOLDER::: d:/respaldo\xampp\htdocs\tramibol\wp-content\plugins\facebook-twitter-google-plus-one-social-share-buttons-for-wordpress 
+INFO : 2018-01-29 23:57:20,147 : Searching files with size 9968
+DEBUG : 2018-01-29 23:57:28,357 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:57:28,357 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  ::::: SIZE::::: 9968
+DEBUG : 2018-01-29 23:57:33,842 : FILE::: d:/MisDocs\Virtual Machines\RFALCONIH-DV02\caches\GuestAppsCache\appData\9c4d713e22689de7523e05efb2ca1150.appicon  ::::: SIZE::::: 9968

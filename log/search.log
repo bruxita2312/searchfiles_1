@@ -196,3 +196,27 @@ INFO : 2018-01-29 23:57:20,147 : Searching files with size 9968
 DEBUG : 2018-01-29 23:57:28,357 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Dailys or Tasks\sales-7557.one (El 21-03-2017).one  ::::: SIZE::::: 9968
 DEBUG : 2018-01-29 23:57:28,357 : FILE::: d:/MisDocs\Blocs de notas de OneNote\OneNote\Copia de seguridad\14.0\Copia de seguridad\Fundacion\sales-7557.one (El 19-02-2017).one  ::::: SIZE::::: 9968
 DEBUG : 2018-01-29 23:57:33,842 : FILE::: d:/MisDocs\Virtual Machines\RFALCONIH-DV02\caches\GuestAppsCache\appData\9c4d713e22689de7523e05efb2ca1150.appicon  ::::: SIZE::::: 9968
+INFO : 2018-01-30 13:15:57,607 : Searching files naming sales
+DEBUG : 2018-01-30 13:15:57,994 : FILE::: d:/C-backup\New folder\sales7777.mp4  
+DEBUG : 2018-01-30 13:15:58,033 : FILE::: d:/Desktop RFALCONIH-DV02\Documents\AppData_Local_Snagit\DataStore\WebSiteIcons\sales-7971.control.qadal0501.softlayer.local.ico  
+DEBUG : 2018-01-30 13:15:58,120 : FILE::: d:/issues\sales-8538-0915.log  
+DEBUG : 2018-01-30 13:15:58,120 : FILE::: d:/issues\sales-8538.txt  
+DEBUG : 2018-01-30 13:15:58,120 : FILE::: d:/issues\sales-8808.log  
+DEBUG : 2018-01-30 13:15:58,144 : FILE::: d:/issues\001 SALES-7557\notes-sales7557 td.txt  
+DEBUG : 2018-01-30 13:15:58,144 : FILE::: d:/issues\001 SALES-7557\notes-sales7557 td.txt.bak  
+DEBUG : 2018-01-30 13:15:58,144 : FILE::: d:/issues\001 SALES-7557\notes-sales7557.txt  
+DEBUG : 2018-01-30 13:15:58,144 : FILE::: d:/issues\001 SALES-7557\notes-sales7557.txt.bak  
+DEBUG : 2018-01-30 13:15:58,387 : FILE::: d:/issues\012 SALES-7735\sales-7735.png  
+DEBUG : 2018-01-30 13:15:58,428 : FILE::: d:/issues\024 SALES-8105\testlink_sales-8105_Tc.xml  
+DEBUG : 2018-01-30 13:15:58,464 : FILE::: d:/issues\032 SALES-8340\sales-8340_r253742.log  
+DEBUG : 2018-01-30 13:15:58,482 : FILE::: d:/issues\038 SALES-8249\sales-8249.sql  
+DEBUG : 2018-01-30 13:15:58,536 : FILE::: d:/issues\052 SALES-8416\sales-8416-165.txt  
+DEBUG : 2018-01-30 13:15:58,536 : FILE::: d:/issues\052 SALES-8416\sales-8416-167.txt  
+DEBUG : 2018-01-30 13:15:58,536 : FILE::: d:/issues\052 SALES-8416\sales-8538-1.php  
+DEBUG : 2018-01-30 13:15:58,536 : FILE::: d:/issues\052 SALES-8416\sales-8538-2.php  
+DEBUG : 2018-01-30 13:15:58,537 : FILE::: d:/issues\052 SALES-8416\sales-8538-3.php  
+DEBUG : 2018-01-30 13:15:58,537 : FILE::: d:/issues\052 SALES-8416\sales-8538-4.php  
+DEBUG : 2018-01-30 13:15:58,537 : FILE::: d:/issues\052 SALES-8416\sales-8686.php  
+INFO : 2018-01-30 13:15:59,526 : Searching folders naming one
+INFO : 2018-01-30 13:15:59,632 : Searching files with size 9968
+DEBUG : 2018-01-30 13:16:00,581 : FILE::: d:/RFALCONIH-DV03\caches\GuestAppsCache\appData\9c4d713e22689de7523e05efb2ca1150.appicon  ::::: SIZE::::: 9968

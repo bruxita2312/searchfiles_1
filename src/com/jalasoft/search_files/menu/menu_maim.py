@@ -28,23 +28,23 @@ class Menu:
             self.show_menu()
             election = int(input("enter an option:  "))
             if election==1:
-                print ("you select 1")
-                Menu.search_by_name()
+                print ("** You select Search by name **")
+                Menu().search_by_name()
                 break
             elif election == 2:
                 print("you select 2")
-                Menu.search_by_extension()
+                Menu().search_by_extension()
                 break
             elif election == 3:
                 print("you select 3")
-                Menu.search_by_extension()
+                Menu().search_by_extension()
                 break
             elif election == 4:
                 print("you select 4")
                 print("Bye Bye >)")
                 sys.exit(0)
             elif  election >5 and election <= 9:
-                print("Please, introduce the valid value")
+                print("******Please, introduce the valid value*****")
             elif election == 0:
                 break
             else:
@@ -61,30 +61,30 @@ class Menu:
 
 
     def search_by_name (self):
+        option_menu=1
+        path_name= raw_input("Enter path: ")
+        name_search=raw_input("Enter name to search: ")
+        print ("** The path is: "+path_name)
+        print ("** The name to search is: "+name_search)
 
-        path =input("Enter path")
-        '''true = self.validator.search(filter)'''
-        name= input("Enter name")
-        '''true = self.validator.search(filter)'''
-        print ("path is "+path+"name: "+name)
 
 
     def search_by_extension(self):
-        path = input("Enter path")
-        '''true = self.validator.search(filter)'''
-        name = input("Enter name")
-        '''true = self.validator.search(filter)'''
-        print ("path is " + path + "name: " + name)
+        option_menu = 2
+        path_name = raw_input("Enter path: ")
+        name_search = raw_input("Enter the extension to search: ")
+        print ("** The path is: " + path_name)
+        print ("** The extension to search is: " + name_search)
 
     def search_by_size(self):
-        path = input("Enter path")
-        '''true = self.validator.search(filter)'''
-        name = input("Enter name")
-        '''true = self.validator.search(filter)'''
-        print ("path is " + path + "name: " + name)
+        option_menu = 3
+        path_name = raw_input("Enter path: ")
+        name_search = raw_input("Enter size to search: ")
+        print ("** The path is: " + path_name)
+        print ("** The Size to search is: " + name_search)
 
     def quit(self):
-        print("Bye Bye >)")
+        print("Bye Bye :)")
         sys.exit(0)
 
 

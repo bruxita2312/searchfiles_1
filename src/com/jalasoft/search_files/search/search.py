@@ -1,8 +1,7 @@
 from os import listdir, walk, getcwd, path
 from sys import exit
-import logging
+from src.com.jalasoft.search_files.utils.logging import logger
 
-logging.basicConfig(filename="../../../../../log/search.log", level=logging.DEBUG, format='%(levelname)s : %(asctime)s : %(message)s')
 
 class Search(object):
 
@@ -30,12 +29,12 @@ class Search(object):
                         print ("OBJECT::: ", fil_search_path)
 
     def _search_file_by_name(self, text):
-        logging.info("Searching files naming %s"  %text)
+        logger.info("Searching files naming %s"  %text)
         for search_path, folders, files in walk(self.path):
             for fil in files:
                 fil_search_path = path.join(search_path,fil)
                 if path.isfile(fil_search_path) and text in fil:
-                    logging.debug ("FILE::: %s  " %fil_search_path)
+                    logger.debug ("FILE::: %s  " %fil_search_path)
                     # myfile = MyFile()
                     # myfile.set_name(fil)
                     # myfile.set_path(search_path)
@@ -43,21 +42,21 @@ class Search(object):
                     # self.result.append(myfile)
 
     def _search_folder_by_name(self, text):
-        logging.info("Searching folders naming %s"  %text)
+        logger.info("Searching folders naming %s"  %text)
         for search_path, folders, files in walk(self.path):
             for fol in folders:
                 fol_search_path = path.join(search_path,fol)
                 if path.isdir(fol_search_path):
                     if text in fol:
-                        logging.debug("FOLDER::: %s " %fol_search_path)
+                        logger.debug("FOLDER::: %s " %fol_search_path)
 
     def _search_by_size(self, text):
-        logging.info("Searching files with size %d" % int(text))
+        logger.info("Searching files with size %d" % int(text))
         for search_path, folders, files in walk(self.path):
             for fil in files:
                 fil_search_path = path.join(search_path, fil)
                 if path.isfile(fil_search_path) and int(path.getsize(fil_search_path)) == int(text):
-                    logging.debug("FILE::: %s  ::::: SIZE::::: %d" % (
+                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (
                     fil_search_path, int(path.getsize(fil_search_path))))
                     # myfile = MyFile()
                     # myfile.set_name(fil)

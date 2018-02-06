@@ -71,6 +71,8 @@ class Menu:
             logger.info("** The path is: %s  " % path_name)
             logger.info("** The name to search is: %s  " % name_search)
             search._search_file_by_name(name_search, path_name)
+        else:
+            print ("Path invalido")
 
     def search_by_extension(self):
         option_menu = 2
@@ -90,6 +92,8 @@ class Menu:
                 logger ("** The path is: " + path_name)
                 logger ("** The Size to search is: " + name_search)
                 search._search_by_size(name_search,path_name)
+        else:
+            print ("Path invalido")
 
     def quit(self):
         print("Bye Bye :)")

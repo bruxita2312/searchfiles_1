@@ -129,78 +129,6 @@ class Search(object):
         else:
             return True
 
-    """BASIC SEARCH"""
-
-    """Receives a text and a path"""
-
-    def search_by_name_basic(self, text, spath):
-        results = []
-        for search_path, folders, files in walk(spath):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if text in fil_search_path:
-                    result = SearchResult()
-                    search_path = path.join(search_path, fil)
-                    result.set_name(fil)
-                    result.set_path(search_path)
-                    # result.set_type(get_extension(search_path))
-                    result.set_ftype("file")
-                    result.set_size(int(path.getsize(search_path)))
-                    result.set_abspath(path.abspath(search_path))
-                    # result.set_cdate(timestamp_to_date(path.getctime(search_path)))
-                    results.append(result)
-            for fol in folders:
-                fol_search_path = path.join(search_path, fol)
-                if text in fol:
-                    result = SearchResult()
-                    search_path = path.join(search_path, fil)
-                    result.set_name(fil)
-                    result.set_path(search_path)
-                    result.set_ftype("folder")
-                    result.set_size(int(path.getsize(search_path)))
-                    result.set_abspath(path.abspath(search_path))
-                    # result.set_cdate(timestamp_to_date(path.getctime(search_path)))
-                    results.append(result)
-
-    def _search_file_by_name(self, text):
-        logger.info("Searching files naming %s" % text)
-        result = []
-        for search_path, folders, files in walk(self.path):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if path.isfile(fil_search_path) and text in fil:
-                    logger.debug("FILE::: %s  " % fil_search_path)
-                    myfile = Search(fil, search_path)
-                    myfile.set_size(int(path.getsize(fil_search_path)))
-                    myfile.set_abspath(path.abspath(fil_search_path))
-                    ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
-                    myfile.set_cdate(ctime)
-                result.append(myfile)
-        return result
-
-    def _search_folder_by_name(self, text):
-        logger.info("Searching folders naming %s" % text)
-        for search_path, folders, files in walk(self.path):
-            for fol in folders:
-                fol_search_path = path.join(search_path, fol)
-                if path.isdir(fol_search_path):
-                    if text in fol:
-                        logger.debug("FOLDER::: %s " % fol_search_path)
-
-    def _search_by_size(self, text):
-        logger.info("Searching files with size %d" % int(text))
-        for search_path, folders, files in walk(self.path):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if path.isfile(fil_search_path) and int(path.getsize(fil_search_path)) == int(text):
-                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (
-                        fil_search_path, int(path.getsize(fil_search_path))))
-                    # myfile = SearchFile()
-                    # myfile.set_name(fil)
-                    # myfile.set_path(search_path)
-                    # myfile.set_size(int(path.getsize(fil_search_path)))
-                    # self.result.append(myfile)
-
 
 class SearchBasic(object):
 
@@ -211,9 +139,9 @@ class SearchBasic(object):
         logger.info("PATH ::: %s" % spath)
         logger.info("Text to search ::: %s" % text)
         if (option == 1):
-            self._search_file_by_name(text,spath)
+            self._search_file_by_name(text, spath)
         elif (option == 2):
-            self._search_by_size(text,spath)
+            self._search_by_size(text, spath)
         elif (option == 3):
             self._search_folder_by_name(text, spath)
         else:
@@ -235,17 +163,34 @@ class SearchBasic(object):
         for search_path, folders, files in walk(spath):
             for fil in files:
                 fil_search_path = path.join(search_path, fil)
-                if text in fil:
-                    logger.debug("FILE::: %s  " % fil_search_path)
+                #logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
+                if text in fil_search_path:
+                    logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
                     rfile = SearchResult()
                     rfile.set_name(fil)
                     rfile.set_path(search_path)
                     rfile.set_size(int(path.getsize(fil_search_path)))
                     rfile.set_abspath(path.abspath(fil_search_path))
                     #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
-                    #rfile.set_cdate(ctime)
+                    # rfile.set_cdate(ctime)
                     rfile.set_ftype("file")
                     results.append(rfile)
+            for fol in folders:
+                fol_search_path = path.join(search_path, fol)
+                #logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                if text in fol:
+                    logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                    rfile = SearchResult()
+                    rfile.set_name(fol)
+                    rfile.set_path(search_path)
+                    rfile.set_size(int(path.getsize(fol_search_path)))
+                    rfile.set_abspath(path.abspath(fol_search_path))
+                    #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
+                    # rfile.set_cdate(ctime)
+                    rfile.set_ftype("folder")
+                    results.append(rfile)
+        logger.info("-----------------------------------------------")
+        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
         return results
 
     def _search_folder_by_name(self, text, spath):
@@ -254,8 +199,8 @@ class SearchBasic(object):
         for search_path, folders, files in walk(spath):
             for fol in folders:
                 fol_search_path = path.join(search_path, fol)
-				if text in fol:
-					logger.debug("FOLDER::: %s " % fol_search_path)
+                if text in fol:
+                    logger.debug("FOLDER::: %s " % fol_search_path)
         return results
 
     def _search_by_size(self, text, spath):
@@ -277,15 +222,15 @@ class SearchBasic(object):
 
 if __name__ == "__main__":
     search = SearchBasic()
-    search.options(1, "sales",getcwd())
-    search.options(3, "one",getcwd())
-    search.options(2, 9968,getcwd())
+    search.options(1, "sales", getcwd())
+    search.options(3, "one", getcwd())
+    search.options(2, 9968, getcwd())
     search.options(4)
 
 # if __name__ == "__main__":
 #     search = Search()
 #     options = {"path": "C:/", "name": "algo", }
-    # search.options(1, "sales")
-    # search.options(3, "one")
-    # search.options(2, "9968")
-    # search.options(4)
+# search.options(1, "sales")
+# search.options(3, "one")
+# search.options(2, "9968")
+# search.options(4)

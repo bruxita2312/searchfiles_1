@@ -4,7 +4,6 @@ from src.com.jalasoft.search_files.utils.logging import logger
 from os import listdir, walk, getcwd, path
 import datetime
 
-
 class Search(object):
 
     def __init__(self):
@@ -210,9 +209,9 @@ class SearchBasic(object):
             for fil in files:
                 fil_search_path = path.join(search_path, fil)
                 if path.isfile(fil_search_path) and int(path.getsize(fil_search_path)) == int(text):
-                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (
-                        fil_search_path, int(path.getsize(fil_search_path))))
-                    # myfile = SearchFile()
+                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (                
+                    fil_search_path, int(path.getsize(fil_search_path))))
+                    # myfile = MyFile()
                     # myfile.set_name(fil)
                     # myfile.set_path(search_path)
                     # myfile.set_size(int(path.getsize(fil_search_path)))

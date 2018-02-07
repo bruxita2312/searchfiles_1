@@ -1,8 +1,7 @@
-import logging
+from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.search.search import SearchBasic
+from src.com.jalasoft.search_files.utils.validator import Validator
 import sys
-'''import Validator'''
-
-logging.basicConfig(filename="../../../../../log/menu_maim.log", level=logging.DEBUG, format='%(levelname)s : %(asctime)s : %(message)s')
 
 class Menu:
     '''Muestra un menu y responde a elecciones cuando se ejecuta.'''
@@ -31,7 +30,7 @@ class Menu:
             election = int(input("enter an option:  "))
             if election==1:
                 print ("** You select Search by name **")
-                Menu().search_by_name()
+                self.search_by_name()
                 break
             elif election == 2:
                 print("you select 2")
@@ -64,26 +63,37 @@ class Menu:
 
     def search_by_name (self):
         option_menu=1
+        search = SearchBasic()
+        validator = Validator()
         path_name= input("Enter path: ")
-        name_search=input("Enter name to search: ")
-        logging.info("** The path is: %s  " % path_name)
-        logging.info("** The name to search is: %s  " % name_search)
-
-
+        if validator.is_path(path_name) == True:
+            name_search=input("Enter name to search: ")
+            logger.info("** The path is: %s  " % path_name)
+            logger.info("** The name to search is: %s  " % name_search)
+            search._search_file_by_name(name_search, path_name)
+        else:
+            print ("Path invalido")
 
     def search_by_extension(self):
         option_menu = 2
-        path_name = raw_input("Enter path: ")
-        name_search = raw_input("Enter the extension to search: ")
-        print ("** The path is: " + path_name)
-        print ("** The extension to search is: " + name_search)
+        path_name = input("Enter path: ")
+        name_search = input("Enter the extension to search: ")
+        logger ("** The path is: " + path_name)
+        logger ("** The extension to search is: " + name_search)
 
     def search_by_size(self):
         option_menu = 3
-        path_name = raw_input("Enter path: ")
-        name_search = raw_input("Enter size to search: ")
-        print ("** The path is: " + path_name)
-        print ("** The Size to search is: " + name_search)
+        search = SearchBasic()
+        validator = Validator()
+        path_name = input("Enter path: ")
+        if validator.is_path(path_name) == True:
+            name_search = input("Enter size to search: ")
+            if validator.is_only_numbers(name_search):
+                logger ("** The path is: " + path_name)
+                logger ("** The Size to search is: " + name_search)
+                search._search_by_size(name_search,path_name)
+        else:
+            print ("Path invalido")
 
     def quit(self):
         print("Bye Bye :)")
@@ -91,4 +101,5 @@ class Menu:
 
 
 if __name__ == "__main__":
-    Menu().run()
+    menu = Menu()
+    menu.run()

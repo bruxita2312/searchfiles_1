@@ -11,7 +11,7 @@ class Validator:
     def is_menu(self, menu, limit):
         res_menu_validator = False
 
-        if is_only_numbers(self, menu):
+        if self.is_only_numbers(self, menu):
             if limit >= menu >= 1:
                 res_menu_validator = True
             else:

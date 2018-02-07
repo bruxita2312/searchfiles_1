@@ -1,7 +1,8 @@
 import logging.config
 import os
 
-from src.com.jalasoft.search_files.utils.logging1 import LOGGER as logger
+from src.com.jalasoft.search_files.utils.logging import logger
+#from src.com.jalasoft.search_files.utils.logging1 import LOGGER as logger
 
 
 class Validator:

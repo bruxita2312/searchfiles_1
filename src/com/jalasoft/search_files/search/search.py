@@ -1,109 +1,235 @@
-from os import listdir, walk, getcwd
-from os.path import isfile, join
+from src.com.jalasoft.search_files.utils.search_result import SearchResult
+from src.com.jalasoft.search_files.utils.search_util import *
+from src.com.jalasoft.search_files.utils.logging import logger
+from os import listdir, walk, getcwd, path
+import datetime
 
-print ("Ubicaciont actual :: ", getcwd())
+class Search(object):
 
-# ver todo el contenido de un fichero
-for mfile in listdir("D:/"):
-    if(isfile(mfile)):
-        print("FILE ::: ", mfile)
-    else:
-        print ("NO FILE :::::: ", mfile)
+    def __init__(self):
+        self.options = {}
+        self.search_results = []
 
-print ("Next example\n\n")
+    def get_options(self):
+        return self.options
 
-# Esta función nos proporcionará, en cada iteración, el path actual, la lista de carpetas contenidas en ella y la lista de archivos contenidos en ella
-for (path, ficheros, archivos) in walk("D:/"):
-    print (path)
-    #print (ficheros)
-    #print (archivos)
+    def set_options(self, options):
+        self.options = options
 
-# class Finder:
-#     matches = []
-#
-#     def __init__(self, type=None, path='/', caseIns=False):
-#         self.type = type
-#         self.path = path
-#         self.caseIns = caseIns
-#
-#     def __list(self):
-#         for wPath in os.walk(self.path):
-#             yield wPath
-#
-#     def __listFolders(self):
-#         for basepath, dirs, files in self.__list():
-#             for name in dirs:
-#                 yield os.path.join(basepath, name)
-#
-#     def __listFiles(self):
-#         for basepath, dirs, files in self.__list():
-#             for name in files:
-#                 yield os.path.join(basepath, name)
-#
-#     def __find(self, generator, regex):
-#         if regex:
-#             flag = 0
-#             if self.caseIns:
-#                 flag = re.IGNORECASE
-#             for path in generator:
-#                 if re.search(r'' + self.needle, path, flag):
-#                     self.matches.append(path)
-#         else:
-#             if (self.caseIns):
-#                 for path in generator:
-#                     temppath = path.lower()
-#                     if temppath.endswith(self.needle.lower()):
-#                         self.matches.append(path)
-#             else:
-#                 for path in generator:
-#                     if path.endswith(self.needle):
-#                         self.matches.append(path)
-#
-#     def find(self, needle, regex=False):
-#         if self.type == None:
-#             raise Exception("Debes especificar un tipo de archivo a buscar")
-#         print("Buscando........ ")
-#         try:
-#             self.needle = needle
-#             if self.type.upper() == 'FOLDER':
-#                 self.__find(self.__listFolders(), regex)
-#             elif self.type.upper() == 'FILE':
-#                 self.__find(self.__listFiles(), regex)
-#         except KeyboardInterrupt:
-#             return self
-#         return self
-#
-#     def showAll(self):
-#         if len(self.matches) > 0:
-#             matches = lambda: [(yield num, match) for num, match in enumerate(self.matches)]
-#             print("Coincidencias: %s" % len(self.matches))
-#             for num, match in matches():
-#                 print("[%d] - '%s'" % (num, match))
-#         else:
-#             print("No se encontraron coincidencias")
-#
-#     def show(self, option):
-#         if len(self.matches) > 0:
-#             pathOrFile = self.matches[option]
-#             line = "-" * 150
-#             if os.path.isdir(pathOrFile):
-#                 content = [os.path.relpath(content) for content in os.listdir(pathOrFile)]
-#                 print("\n-> %d archivos en el directorio seleccionado '%s'\n-> Mostrando el contenido:\n" % (
-#                 len(content), pathOrFile))
-#                 print("%s\n" % "\n".join(content))
-#             elif os.path.isfile(pathOrFile):
-#                 print("\nMostrando contenido del archivo '%s':\n" % pathOrFile)
-#                 print(line)
-#                 with open(pathOrFile, 'r') as file:
-#                     print (file.read())
-#                 print(line)
-#                 print("\nFin de archivo")
-#         else:
-#             print("No se encontraron coincidencias")
-#
+    def get_search_results(self):
+        return self.search_results
+
+    def set_search_results(self, results):
+        self.search_results = results
+
+    def search_options(self):
+        logger.info("SEARCH_OPTIONS begin")
+        try:
+            if self.options.get("type") == "basic":
+                logger.info("BASIC SEARCH:::")
+                # self.set_search_results(self.basic_search(self.options))
+            else:
+                logger.info("ADVANCED SEARCH:::")
+                # self.set_search_results(self.adv_search(self.options))
+        except:
+            pass
+        logger.info("SEARCH_OPTIONS end")
+
+    def searching(self):
+        logger.info("SEARCHING begin")
+        results = []
+        if self.options.get("path") == None or "path" not in self.options:
+            self.options["path"] = "/"
+        for search_path, folders, files in walk(self.options.get("search_path")):
+            for fil in files:
+                result = SearchResult()
+                search_path = path.join(search_path, fil)
+                result.set_name(fil)
+                result.set_path(search_path)
+                result.set_type(get_extension(search_path))
+                result.set_ftype("file")
+                result.set_size(int(path.getsize(search_path)))
+                result.set_abspath(path.abspath(search_path))
+                result.set_cdate(timestamp_to_date(path.getctime(search_path)))
+                results.append(result)
+            for fil in folders:
+                result = SearchResult()
+                search_path = path.join(search_path, fil)
+                result.set_name(fil)
+                result.set_path(search_path)
+                result.set_ftype("folder")
+                result.set_size(int(path.getsize(search_path)))
+                result.set_abspath(path.abspath(search_path))
+                result.set_cdate(timestamp_to_date(path.getctime(search_path)))
+                results.append(result)
+        logger.info("SEARCHING end")
+        return results
+
+    def search_by_name(self, result):
+        search_result = result
+        name = get_name(search_result.get_name())
+        if "name" in self.options:
+            if self.options.get("name") in name:
+                return True
+            else:
+                return False
+        else:
+            return True
+
+    def search_by_size(self, result):
+        search_result = result
+        if "size" in self.options:
+            if "greater" in self.options:
+                if search_result.get_size() > int(self.options.get("size")):
+                    return True
+                else:
+                    False
+            elif "less" in self.options:
+                if search_result.get_size() < int(self.options.get("size")):
+                    return True
+                else:
+                    False
+            else:
+                if search_result.get_size() == int(self.options.get("size")):
+                    return True
+                else:
+                    False
+        else:
+            return True
+
+    def search_by_date(self, result):
+        search_result = result
+        if "date" in self.options:
+            if "greater" in self.options:
+                if search_result.get_ctime() > self.options.get("date"):
+                    return True
+                else:
+                    False
+            elif "less" in self.options:
+                if search_result.get_ctime() < self.options.get("date"):
+                    return True
+                else:
+                    False
+            else:
+                if search_result.get_ctime() == self.options.get("date"):
+                    return True
+                else:
+                    False
+        else:
+            return True
+
+    def search_by_extension(self, result):
+        search_result = result
+        if "type" in self.options:
+            if self.options.get("type") in search_result.get_ftype():
+                return True
+            else:
+                False
+        else:
+            return True
+
+
+class SearchBasic(object):
+
+    def __init__(self):
+        pass
+
+    def options(self, option, text=None, spath="/"):
+        logger.info("PATH ::: %s" % spath)
+        logger.info("Text to search ::: %s" % text)
+        if (option == 1):
+            self._search_file_by_name(text, spath)
+        elif (option == 2):
+            self._search_by_size(text, spath)
+        elif (option == 3):
+            self._search_folder_by_name(text, spath)
+        else:
+            print("Exiting from searcher")
+            logger.info("Exit from basic search")
+            exit(0)
+
+    def _search_by_name(self, text):
+        for search_path, folders, files in walk(self.path):
+            for fil in files:
+                fil_search_path = path.join(search_path, fil)
+                if path.isfile(fil_search_path):
+                    if text in fil_search_path:
+                        print("OBJECT::: ", fil_search_path)
+
+    def _search_file_by_name(self, text, spath):
+        logger.info("Searching files naming %s" % text)
+        results = []
+        for search_path, folders, files in walk(spath):
+            for fil in files:
+                fil_search_path = path.join(search_path, fil)
+                #logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
+                if text in fil_search_path:
+                    logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
+                    rfile = SearchResult()
+                    rfile.set_name(fil)
+                    rfile.set_path(search_path)
+                    rfile.set_size(int(path.getsize(fil_search_path)))
+                    rfile.set_abspath(path.abspath(fil_search_path))
+                    #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
+                    # rfile.set_cdate(ctime)
+                    rfile.set_ftype("file")
+                    results.append(rfile)
+            for fol in folders:
+                fol_search_path = path.join(search_path, fol)
+                #logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                if text in fol:
+                    logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                    rfile = SearchResult()
+                    rfile.set_name(fol)
+                    rfile.set_path(search_path)
+                    rfile.set_size(int(path.getsize(fol_search_path)))
+                    rfile.set_abspath(path.abspath(fol_search_path))
+                    #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
+                    # rfile.set_cdate(ctime)
+                    rfile.set_ftype("folder")
+                    results.append(rfile)
+        logger.info("-----------------------------------------------")
+        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
+        return results
+
+    def _search_folder_by_name(self, text, spath):
+        logger.info("Searching folders naming %s" % text)
+        results = []
+        for search_path, folders, files in walk(spath):
+            for fol in folders:
+                fol_search_path = path.join(search_path, fol)
+                if text in fol:
+                    logger.debug("FOLDER::: %s " % fol_search_path)
+        return results
+
+    def _search_by_size(self, text, spath):
+        logger.info("Searching files with size %d" % int(text))
+        results = []
+        for search_path, folders, files in walk(spath):
+            for fil in files:
+                fil_search_path = path.join(search_path, fil)
+                if path.isfile(fil_search_path) and int(path.getsize(fil_search_path)) == int(text):
+                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (                
+                    fil_search_path, int(path.getsize(fil_search_path))))
+                    # myfile = MyFile()
+                    # myfile.set_name(fil)
+                    # myfile.set_path(search_path)
+                    # myfile.set_size(int(path.getsize(fil_search_path)))
+                    # self.result.append(myfile)
+        return results
+
+
+if __name__ == "__main__":
+    search = SearchBasic()
+    search.options(1, "sales", getcwd())
+    search.options(3, "one", getcwd())
+    search.options(2, 9968, getcwd())
+    search.options(4)
+
 # if __name__ == "__main__":
-#     search = Finder()
-
-# https://www.lawebdelprogramador.com/codigo/Python/3994-Clase-para-buscar-una-carpeta-o-un-archivo-y-mostrar-el-contenido.html
-# http://www.alvarohurtado.es/leer-carpetas-y-archivos-con-python/
-# https://www.guru99.com/learn-python-main-function-with-examples-understand-main.html
+#     search = Search()
+#     options = {"path": "C:/", "name": "algo", }
+# search.options(1, "sales")
+# search.options(3, "one")
+# search.options(2, "9968")
+# search.options(4)

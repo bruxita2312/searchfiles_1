@@ -4,6 +4,7 @@ from src.com.jalasoft.search_files.utils.logging import logger
 from os import listdir, walk, getcwd, path
 import datetime
 
+
 class Search(object):
 
     def __init__(self):
@@ -142,19 +143,20 @@ class SearchBasic(object):
         elif (option == 2):
             self._search_by_size(text, spath)
         elif (option == 3):
-            self._search_folder_by_name(text, spath)
+            #self._search_folder_by_name(text, spath)
+            pass
         else:
             print("Exiting from searcher")
             logger.info("Exit from basic search")
             exit(0)
 
-    def _search_by_name(self, text):
-        for search_path, folders, files in walk(self.path):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if path.isfile(fil_search_path):
-                    if text in fil_search_path:
-                        print("OBJECT::: ", fil_search_path)
+    # def _search_by_name(self, text):
+    #     for search_path, folders, files in walk(self.path):
+    #         for fil in files:
+    #             fil_search_path = path.join(search_path, fil)
+    #             if path.isfile(fil_search_path):
+    #                 if text in fil_search_path:
+    #                     print("OBJECT::: ", fil_search_path)
 
     def _search_file_by_name(self, text, spath):
         logger.info("Searching files naming %s" % text)
@@ -162,74 +164,116 @@ class SearchBasic(object):
         for search_path, folders, files in walk(spath):
             for fil in files:
                 fil_search_path = path.join(search_path, fil)
-                #logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
-                if text in fil_search_path:
-                    logger.info("FILE::: %s :: %s " % (fil, fil_search_path))
+                if str.lower(text) in str.lower(fil):
+                    logger.info("FILE::: %s " % (fil))
                     rfile = SearchResult()
                     rfile.set_name(fil)
                     rfile.set_path(search_path)
                     rfile.set_size(int(path.getsize(fil_search_path)))
                     rfile.set_abspath(path.abspath(fil_search_path))
-                    #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
-                    # rfile.set_cdate(ctime)
+                    create_date = timestamp_to_date(path.getctime(fil_search_path))
+                    rfile.set_cdate(create_date)
                     rfile.set_ftype("file")
+                    #print ("%s \t || %s \t || %d \t || %s" %(rfile.get_name(), rfile.get_path(),rfile.get_size(),rfile.get_cdate()))
+                    #print(" "+rfile.get_name()+"\t   || \t   "+rfile.get_path())
                     results.append(rfile)
             for fol in folders:
                 fol_search_path = path.join(search_path, fol)
-                #logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
-                if text in fol:
-                    logger.info("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                #print("FOLDER::: %s :: %s " % (fol, fol_search_path))
+                if str.lower(text) in str.lower(fol):
+                    logger.info("FOLDER::: %s " % (fol))
                     rfile = SearchResult()
                     rfile.set_name(fol)
                     rfile.set_path(search_path)
                     rfile.set_size(int(path.getsize(fol_search_path)))
                     rfile.set_abspath(path.abspath(fol_search_path))
-                    #ctime = datetime.fromtimestamp(path.getctime(fil_search_path)).strftime('%Y-%m-%d %H:%M:%S')
-                    # rfile.set_cdate(ctime)
+                    create_date = timestamp_to_date(path.getctime(fil_search_path))
+                    rfile.set_cdate(create_date)
                     rfile.set_ftype("folder")
+                    print(" "+fol+"            FOLDER           "+search_path)
                     results.append(rfile)
         logger.info("-----------------------------------------------")
         logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
+        logger.info("===============================================================================")
+        matches= str(len(results))
+        print("******* Total items matched: " + matches + " *******")
+
+
+
         return results
 
-    def _search_folder_by_name(self, text, spath):
-        logger.info("Searching folders naming %s" % text)
+    def _search_by_ext(self, text, spath):
+        logger.info("Searching files with extension %s" % text)
         results = []
         for search_path, folders, files in walk(spath):
-            for fol in folders:
-                fol_search_path = path.join(search_path, fol)
-                if text in fol:
-                    logger.debug("FOLDER::: %s " % fol_search_path)
+            for fil in files:
+                fil_search_path = path.join(search_path, fil)
+                ext = get_extension(fil_search_path)
+                name = get_name(fil_search_path)
+                #print("NAME:::: %s            TYPE::::%s" % (name,ext))
+
+                if text in ext:
+                    logger.info("FILE ::: %s " % fil_search_path)
+                    print("  "+fil+"                    "+search_path)
+                    rfile = SearchResult()
+                    rfile.set_name(fil)
+                    rfile.set_path(search_path)
+                    rfile.set_size(int(path.getsize(fil_search_path)))
+                    rfile.set_abspath(path.abspath(fil_search_path))
+                    create_date = timestamp_to_date(path.getctime(fil_search_path))
+                    rfile.set_cdate(create_date)
+                    rfile.set_ftype("file")
+                    results.append(rfile)
+        logger.info("-----------------------------------------------")
+        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
+        logger.info("===============================================================================")
+        matches = str(len(results))
+        print("")
+        print("")
+        print("******* Total items matched: " + matches+" *******")
+
         return results
 
     def _search_by_size(self, text, spath):
         logger.info("Searching files with size %d" % int(text))
         results = []
+        xfile_size= size_converter_to_bytes(int(text), "mb")
+        print ("SIZE TO SEARCH ::: %d " % xfile_size)
         for search_path, folders, files in walk(spath):
             for fil in files:
                 fil_search_path = path.join(search_path, fil)
-                if path.isfile(fil_search_path) and int(path.getsize(fil_search_path)) == int(text):
-                    logger.debug("FILE::: %s  ::::: SIZE::::: %d" % (                
-                    fil_search_path, int(path.getsize(fil_search_path))))
-                    # myfile = MyFile()
-                    # myfile.set_name(fil)
-                    # myfile.set_path(search_path)
-                    # myfile.set_size(int(path.getsize(fil_search_path)))
-                    # self.result.append(myfile)
+                if int(path.getsize(fil_search_path)) > xfile_size:
+                    c= size_converter(path.getsize(fil_search_path),"mb")
+                    logger.info("FILE::: %s  ::::: SIZE::::: %d" % (fil_search_path, c))
+                    print("Item"+fil_search_path+" "+c)
+                    rfile = SearchResult()
+                    rfile.set_name(fil)
+                    rfile.set_path(search_path)
+                    rfile.set_size(int(path.getsize(fil_search_path)))
+                    rfile.set_abspath(path.abspath(fil_search_path))
+                    create_date = timestamp_to_date(path.getctime(fil_search_path))
+                    rfile.set_cdate(create_date)
+                    rfile.set_ftype("file")
+                    results.append(rfile)
+        logger.info("-----------------------------------------------")
+        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
+        logger.info("===============================================================================")
+        print(" ")
         return results
 
 
 if __name__ == "__main__":
     search = SearchBasic()
-    search.options(1, "sales", getcwd())
-    search.options(3, "one", getcwd())
-    search.options(2, 9968, getcwd())
+    search.options(1, "sales", "f:\\")
+    search.options(3, "one", "f:\\")
+    search.options(2, 9968, "f:\\")
     search.options(4)
 
-# if __name__ == "__main__":
-#     search = Search()
-#     options = {"path": "C:/", "name": "algo", }
-# search.options(1, "sales")
-# search.options(3, "one")
-# search.options(2, "9968")
-# search.options(4)
+    # options = {"search_path":"f:/", "search_on":"file","search_name":"menu"}
+    # options2 = {"search_path": "f:/", "search_on": "file", "search_name": "menu","search_size": 1037}
+    # options3 = {"search_path": "f:/", "search_on": "file", "search_name": "menu", "search_size": 1500,"size_is":"greater"}
+    # searcha = SearchAdvance()
+    # searcha.set_options(options)
+    # searcha.searching()
+    # searcha.set_options(options3)
+    # searcha.searching()

@@ -38,7 +38,7 @@ class Menu:
                 break
             elif election == 3:
                 print("you select 3")
-                Menu().search_by_extension()
+                Menu().search_by_size()
                 break
             elif election == 4:
                 print("you select 4")
@@ -50,19 +50,9 @@ class Menu:
                 break
             else:
                 print("miauuuuu")
-            #action = self.elections.get(election, None)
-            #print(self.elections[election])
-            #DANEEEEEEEEEEEE aca necesito que me vuelva un trueeeee...helps meee#
-            #if action:
-            #   action()
-            #else:
-            #
-            #   print("{0} option not valid".format(election))
-
 
 
     def search_by_name (self):
-        option_menu=1
         search = SearchBasic()
         validator = Validator()
         path_name= input("Enter path: ")
@@ -70,30 +60,40 @@ class Menu:
             name_search=input("Enter name to search: ")
             logger.info("** The path is: %s  " % path_name)
             logger.info("** The name to search is: %s  " % name_search)
+            print(" ")
+            print("|========= NAME ===========|====== TYPE ========|============================ PATH ===============================|")
             search._search_file_by_name(name_search, path_name)
-        else:
-            print ("Path invalido")
+            print("==================================================================================================")
+        menu.run()
+
+
 
     def search_by_extension(self):
-        option_menu = 2
-        path_name = input("Enter path: ")
-        name_search = input("Enter the extension to search: ")
-        logger ("** The path is: " + path_name)
-        logger ("** The extension to search is: " + name_search)
-
-    def search_by_size(self):
-        option_menu = 3
         search = SearchBasic()
         validator = Validator()
         path_name = input("Enter path: ")
         if validator.is_path(path_name) == True:
-            name_search = input("Enter size to search: ")
-            if validator.is_only_numbers(name_search):
-                logger ("** The path is: " + path_name)
-                logger ("** The Size to search is: " + name_search)
-                search._search_by_size(name_search,path_name)
-        else:
-            print ("Path invalido")
+            name_search = input("Enter the extension to search: ")
+            logger.info ("** The path is: " + path_name)
+            logger.info ("** The extension to search is: " + name_search)
+            #print("========= Search Results==========")
+            print(" ")
+            print("|=========NAME===========||===============================PATH===================================|")
+            search._search_by_ext(name_search,path_name)
+            print("===================================")
+        menu.run()
+
+    def search_by_size(self):
+        search = SearchBasic()
+        validator = Validator()
+        path_name = input("Enter path: ")
+        if validator.is_path(path_name) == True:
+            name_search = input("Enter size to search (MB): ")
+            logger.info ("** The path is: " + path_name)
+            logger.info ("** The Size to compare is: " + name_search)
+            print(" ")
+            search._search_by_size(name_search,path_name)
+        menu.run()
 
     def quit(self):
         print("Bye Bye :)")

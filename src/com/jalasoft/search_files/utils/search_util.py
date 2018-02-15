@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 from os import path
 
@@ -34,17 +34,13 @@ def timestamp_to_date(ctime):
     return date.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
 
 def get_extension(apath):
+    extension=""
     if path.isfile(apath):
         extension = path.splitext(apath)[1]
     return extension
 
 def get_name(apath):
+    filename = ""
     if path.isfile(apath):
-        archivo = path.splitext(apath)[0]
-    return archivo
-
-
-converted = size_converter(15,"mb")
-#print (converted)
-converted = size_converter_to_bytes(15728640,"mb")
-#3print (converted)
+        filename = path.splitext(apath)[0]
+    return filename

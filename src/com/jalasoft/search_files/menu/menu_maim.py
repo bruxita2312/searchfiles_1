@@ -22,7 +22,6 @@ class Menu:
         print(" 3 Search by Size")
         print(" 4 quit")
 
-
     def run(self):
 
         while True:
@@ -51,7 +50,6 @@ class Menu:
             else:
                 print("miauuuuu")
 
-
     def search_by_name (self):
         search = SearchBasic()
         validator = Validator()
@@ -65,8 +63,6 @@ class Menu:
             search._search_file_by_name(name_search, path_name)
             print("==================================================================================================")
         menu.run()
-
-
 
     def search_by_extension(self):
         search = SearchBasic()

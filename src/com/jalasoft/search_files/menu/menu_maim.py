@@ -1,7 +1,9 @@
-from src.com.jalasoft.search_files.utils.logging import logger
-from src.com.jalasoft.search_files.search.search import SearchBasic
-from src.com.jalasoft.search_files.utils.validator import Validator
 import sys
+
+from src.com.jalasoft.search_files.search.search import SearchBasic
+from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.validator.validator import Validator
+
 
 class Menu:
     '''Muestra un menu y responde a elecciones cuando se ejecuta.'''

@@ -1,7 +1,5 @@
-from src.com.jalasoft.search_files.utils.logging import logger
 from src.com.jalasoft.search_files.search.search import Search
-from src.com.jalasoft.search_files.utils.validator import Validator
-import sys
+
 try:
     from tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar, DoubleVar
 except ImportError:

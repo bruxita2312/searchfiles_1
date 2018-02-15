@@ -2,7 +2,6 @@ from src.com.jalasoft.search_files.utils.search_result import SearchResult
 from src.com.jalasoft.search_files.utils.search_util import *
 from src.com.jalasoft.search_files.utils.logging import logger
 from os import walk, path, stat
-import datetime
 
 
 class Search(object):
@@ -37,10 +36,9 @@ class Search(object):
                     result.set_path(search_path)
                     result.set_type(get_extension(search_path))
                     result.set_size(int(path.getsize(search_path)))
-                    result.set_cdate(path.getctime(search_path))
+                    result.set_cdate(timestamp_to_date(path.getctime(search_path)))
                     logger.info("FILE :::: %s \t || %s \t || %d \t || %s" %(result.get_name(), result.get_path(),result.get_size(),result.get_cdate()))
                     add_to_list = self.add_to_results(result)
-                    # print(" "+rfile.get_name()+"\t   || \t   "+rfile.get_path())
                     if add_to_list == True:
                         result.set_ftype("file")
                         #result.set_abspath(path.normpath(search_path))
@@ -57,7 +55,7 @@ class Search(object):
                     result.set_name(fil)
                     result.set_path(search_path)
                     #result.set_size(int(path.getsize(search_path)))
-                    result.set_cdate(path.getctime(search_path))
+                    #result.set_cdate(path.getctime(search_path))
                     logger.info("FOLDER :::: %s \t || %s \t || %d \t || %s" %(result.get_name(), result.get_path(),result.get_size(),result.get_cdate()))
                     add_to_list = self.add_to_results(result)
                     if add_to_list == True:
@@ -71,8 +69,11 @@ class Search(object):
 
     def add_to_results(self, result):
         boolean_name = self.search_by_name(result)
-        boolean_size = self.search_by_size(result)
-        boolean_ext = self.search_by_extension(result)
+        boolean_name = True
+        #boolean_size = self.search_by_size(result)
+        boolean_size = True
+        #boolean_ext = self.search_by_extension(result)
+        boolean_ext=True
         #boolean_ctime = self.search_by_date(result)
         boolean_ctime = True
         if boolean_name==True and boolean_ext==True and boolean_size==True and boolean_ctime == True:
@@ -171,8 +172,9 @@ class Search(object):
 
 
 if __name__ == "__main__":
-
+    """Test search by name"""
     options = {"search_path":"d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on":"file","search_name":"menu"}
+    """Test search by name and size"""
     options2 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu","search_size": 1037}
     options3 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "searc", "search_size": 1500,"search_size_options":"Greater"}
     searcha = Search()

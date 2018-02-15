@@ -12,9 +12,10 @@ class Menu(object):
 
     def __init__(self):
         self.searching = Search()
-        self.list_result = ttk.Treeview()
+        #self.list_result = ttk.Treeview()
+        self.list_result=""
         self.search_window = Tk(screenName="Searcher Dana v1")
-        self.window_width = int(self.search_window.winfo_screenwidth()*0.8)
+        self.window_width = int(self.search_window.winfo_screenwidth()*0.5)
         self.window_heigth = int(self.search_window.winfo_screenheight() * 0.9)
         self.search_path = Entry()
         self.search_name = Entry()
@@ -38,9 +39,9 @@ class Menu(object):
         self.search_window.minsize(width=self.window_width, height=self.window_heigth-15)
         self.search_window.maxsize(width=self.window_width, height=self.window_heigth)
         self.search_window.title("Searcher Dana v1")
-        title_frame = self.format_title_frame()
-        search_frame = self.format_advance_frame()
-        search_list_result = self.format_table_result()
+        self.format_title_frame()
+        self.format_advance_frame()
+        self.format_table_result()
         """Active windows"""
         self.search_window.mainloop()
 
@@ -52,7 +53,6 @@ class Menu(object):
         title_frame.rowconfigure(0, weight=1)
         label_title = Label(title_frame, text="Search files with:", fg="Black", font=title_font, padx=10, pady=15)
         label_title.grid(column=0, row=0, sticky="W")
-        return title_frame
 
     def format_advance_frame(self):
         """Defining styles for labels"""
@@ -115,18 +115,20 @@ class Menu(object):
         result_frame = Frame(self.search_window, width=self.window_width)
         result_frame.grid(column=0, row=2, padx=(15, 15), pady=(15, 15))
         """Defining the treeview UI"""
-        list_result = ttk.Treeview(result_frame, height=20)
-        list_result["columns"] = ("Path", "Size", "Create Date")
+        self.list_result = ttk.Treeview(result_frame, height=20)
+        self.list_result["columns"] = ("Path", "Size", "Create Date")
         """Defining the column number"""
-        list_result.column("Path", width=100)
-        list_result.column("Create Date", width=50)
-        list_result.column("Size", width=50)
+        self.list_result.column("Path", width=100)
+        self.list_result.column("Create Date", width=50)
+        self.list_result.column("Size", width=50)
         """Defining columns name"""
-        list_result.heading("Path", text="Path")
-        list_result.heading("Create Date", text="Create Date")
-        list_result.heading("Size", text="Size")
-        list_result.insert("", 0, text="Line 1", values=("1A", "1B"))
-        list_result.grid(column=1, row=1, sticky="E")
+        self.list_result.heading("Path", text="Path")
+        self.list_result.heading("Create Date", text="Create Date")
+        self.list_result.heading("Size", text="Size")
+        self.list_result.insert("", 0, text="Line 1", values=("1A", "1B", "1C", "1D"))
+        self.list_result.grid(column=1, row=1, sticky="E")
+        #self.list_result.insert("",1, text="Line 1", values=("1A", "2B", "1C", "1D"))
+        #self.list_result.grid(column=1, row=1, sticky="E")
         return result_frame
 
     def action_clean(self):
@@ -134,16 +136,22 @@ class Menu(object):
 
     def action_search(self):
         print("You press Search button")
-        print("Path ", self.search_path.get())
-        options = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2\\", "search_on": "file", "search_name": "menu"}
+        #print("Path ", self.search_path.get())
+        """Add validators to lunch search process"""
+        options = {"search_path": "C:\\Users\\Administrator\\Documents\\SearchFiles", "search_on": "file", "search_name": "menu"}
         self.searching.set_options(options)
         search_results_list = []
         search_results_list=self.searching.searching()
         print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
+        for s_result in search_results_list:
+            pass
+        count=1
         for for_indice in range (len(search_results_list)):
+            print ("ACTION SEARCH ::: ", search_results_list[for_indice].get_name(), "---", search_results_list[for_indice].get_path(),"----", search_results_list[for_indice].get_size())
             print (for_indice)
-            self.list_result.insert("", for_indice, text="Line 1", values=("1A", "1B"))
+            self.list_result.insert("", count, text="Line 1", values=("1A", "1B", "1C", "1D"))
             for_indice =+ 1
+            count = count+1
 
 
 if __name__ == "__main__":

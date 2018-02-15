@@ -2,7 +2,6 @@ from src.com.jalasoft.search_files.utils.search_result import SearchResult
 from src.com.jalasoft.search_files.utils.search_util import *
 from src.com.jalasoft.search_files.utils.logging import logger
 from os import listdir, walk, getcwd, path
-#from src.com.jalasoft.search_files.menu.menu_maim import *
 import datetime
 
 

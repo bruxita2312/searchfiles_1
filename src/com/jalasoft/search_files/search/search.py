@@ -5,7 +5,7 @@ from os import listdir, walk, getcwd, path
 import datetime
 
 
-class SearchAdvance(object):
+class Search(object):
 
     def __init__(self):
         self.options = {}
@@ -183,7 +183,8 @@ class SearchBasic(object):
         elif (option == 2):
             self._search_by_size(text, spath)
         elif (option == 3):
-            self._search_folder_by_name(text, spath)
+            #self._search_folder_by_name(text, spath)
+            pass
         else:
             print("Exiting from searcher")
             logger.info("Exit from basic search")
@@ -205,6 +206,8 @@ class SearchBasic(object):
                     create_date = timestamp_to_date(path.getctime(fil_search_path))
                     rfile.set_cdate(create_date)
                     rfile.set_ftype("file")
+                    #print ("%s \t || %s \t || %d \t || %s" %(rfile.get_name(), rfile.get_path(),rfile.get_size(),rfile.get_cdate()))
+                    #print(" "+rfile.get_name()+"\t   || \t   "+rfile.get_path())
                     results.append(rfile)
             for fol in folders:
                 fol_search_path = path.join(search_path, fol)
@@ -219,10 +222,13 @@ class SearchBasic(object):
                     create_date = timestamp_to_date(path.getctime(fil_search_path))
                     rfile.set_cdate(create_date)
                     rfile.set_ftype("folder")
+                    print(" "+fol+"            FOLDER           "+search_path)
                     results.append(rfile)
         logger.info("-----------------------------------------------")
         logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
         logger.info("===============================================================================")
+        matches= str(len(results))
+        print("******* Total items matched: " + matches + " *******")
         return results
 
     def _search_by_ext(self, text, spath):
@@ -248,6 +254,8 @@ class SearchBasic(object):
         logger.info("-----------------------------------------------")
         logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
         logger.info("===============================================================================")
+        matches = str(len(results))
+        print("******* Total items matched: " + matches+" *******")
         return results
 
     def _search_by_size(self, text, spath):
@@ -277,17 +285,17 @@ class SearchBasic(object):
 
 
 if __name__ == "__main__":
-    # search = SearchBasic()
-    # search.options(1, "sales", getcwd())
-    # search.options(3, "one", getcwd())
-    # search.options(2, 9968, getcwd())
-    # search.options(4)
+    search = SearchBasic()
+    search.options(1, "sales", "f:\\")
+    search.options(3, "one", "f:\\")
+    search.options(2, 9968, "f:\\")
+    search.options(4)
 
-    options = {"search_path":"f:/", "search_on":"file","search_name":"menu"}
-    options2 = {"search_path": "f:/", "search_on": "file", "search_name": "menu","search_size": 1037}
-    options3 = {"search_path": "f:/", "search_on": "file", "search_name": "menu", "search_size": 1500,"size_is":"greater"}
-    searcha = SearchAdvance()
-    searcha.set_options(options)
-    searcha.searching()
-    searcha.set_options(options3)
-    searcha.searching()
+    # options = {"search_path":"f:/", "search_on":"file","search_name":"menu"}
+    # options2 = {"search_path": "f:/", "search_on": "file", "search_name": "menu","search_size": 1037}
+    # options3 = {"search_path": "f:/", "search_on": "file", "search_name": "menu", "search_size": 1500,"size_is":"greater"}
+    # searcha = SearchAdvance()
+    # searcha.set_options(options)
+    # searcha.searching()
+    # searcha.set_options(options3)
+    # searcha.searching()

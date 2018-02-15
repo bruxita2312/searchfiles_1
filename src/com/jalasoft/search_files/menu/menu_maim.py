@@ -60,7 +60,13 @@ class Menu:
             name_search=input("Enter name to search: ")
             logger.info("** The path is: %s  " % path_name)
             logger.info("** The name to search is: %s  " % name_search)
+            print(" ")
+            print("|========= NAME ===========|====== TYPE ========|============================ PATH ===============================|")
             search._search_file_by_name(name_search, path_name)
+            print("==================================================================================================")
+        menu.run()
+
+
 
     def search_by_extension(self):
         search = SearchBasic()
@@ -70,7 +76,12 @@ class Menu:
             name_search = input("Enter the extension to search: ")
             logger.info ("** The path is: " + path_name)
             logger.info ("** The extension to search is: " + name_search)
+            #print("========= Search Results==========")
+            print(" ")
+            print("|=========NAME===========||===============================PATH===================================|")
             search._search_by_ext(name_search,path_name)
+            print("===================================")
+        menu.run()
 
     def search_by_size(self):
         search = SearchBasic()
@@ -80,7 +91,9 @@ class Menu:
             name_search = input("Enter size to search (MB): ")
             logger.info ("** The path is: " + path_name)
             logger.info ("** The Size to compare is: " + name_search)
+            print(" ")
             search._search_by_size(name_search,path_name)
+        menu.run()
 
     def quit(self):
         print("Bye Bye :)")

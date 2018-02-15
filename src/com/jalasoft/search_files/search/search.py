@@ -23,19 +23,6 @@ class SearchAdvance(object):
     def set_search_results(self, results):
         self.search_results = results
 
-    def search_options(self):
-        logger.info("SEARCH_OPTIONS begin")
-        try:
-            if self.options.get("type") == "basic":
-                logger.info("BASIC SEARCH:::")
-                # self.set_search_results(self.basic_search(self.options))
-            else:
-                logger.info("ADVANCED SEARCH:::")
-                # self.set_search_results(self.adv_search(self.options))
-        except:
-            pass
-        logger.info("SEARCH_OPTIONS end")
-
     def searching(self):
         logger.info("==========================================\n=====================================")
         logger.info("=================================\n==============================================")

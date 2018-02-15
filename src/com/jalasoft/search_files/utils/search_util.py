@@ -31,7 +31,7 @@ def size_converter(size, type):
 
 def timestamp_to_date(ctime):
     """Function receives a timestamp and returns a formated date"""
-    return date.fromtimestamp(ctime).strftime('%Y-%m-%d')
+    return date.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
 
 def get_extension(apath):
     if path.isfile(apath):
@@ -45,6 +45,6 @@ def get_name(apath):
 
 
 converted = size_converter(15,"mb")
-print (converted)
+#print (converted)
 converted = size_converter_to_bytes(15728640,"mb")
-print (converted)
+#3print (converted)

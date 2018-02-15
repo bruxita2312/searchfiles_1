@@ -1,8 +1,7 @@
 from src.com.jalasoft.search_files.utils.search_result import SearchResult
 from src.com.jalasoft.search_files.utils.search_util import *
 from src.com.jalasoft.search_files.utils.logging import logger
-from os import listdir, walk, getcwd, path
-import datetime
+from os import walk, path
 
 
 class Search(object):
@@ -22,19 +21,6 @@ class Search(object):
 
     def set_search_results(self, results):
         self.search_results = results
-
-    def search_options(self):
-        logger.info("SEARCH_OPTIONS begin")
-        try:
-            if self.options.get("type") == "basic":
-                logger.info("BASIC SEARCH:::")
-                # self.set_search_results(self.basic_search(self.options))
-            else:
-                logger.info("ADVANCED SEARCH:::")
-                # self.set_search_results(self.adv_search(self.options))
-        except:
-            pass
-        logger.info("SEARCH_OPTIONS end")
 
     def searching(self):
         logger.info("==========================================\n=====================================")
@@ -58,7 +44,6 @@ class Search(object):
                         result.set_type(get_extension(fil_path))
                         result.set_ftype("file")
                         result.set_size(path.getsize(fil_path))
-                        #result.set_abspath(path.abspath(fil_path))
                         result.set_cdate(timestamp_to_date(path.getctime(fil_path)))
                         by_name = self.search_by_name(result)
                         by_size = self.search_by_size(result)
@@ -74,7 +59,6 @@ class Search(object):
                         result.set_path(fil_path)
                         result.set_ftype("folder")
                         result.set_size(path.getsize(fil_path))
-                        #result.set_abspath(path.abspath(fil_path))
                         result.set_cdate(timestamp_to_date(path.getctime(fil_path)))
                         by_name = self.search_by_name(result)
                         by_size = self.search_by_size(result)
@@ -183,7 +167,6 @@ class SearchBasic(object):
         elif (option == 2):
             self._search_by_size(text, spath)
         elif (option == 3):
-            #self._search_folder_by_name(text, spath)
             pass
         else:
             print("Exiting from searcher")

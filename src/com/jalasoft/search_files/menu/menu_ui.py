@@ -1,59 +1,157 @@
-from tkinter import *
+from src.com.jalasoft.search_files.search.search import Search
 
-def print_test():
-    print("el boton si funciona")
-
-
-def open_advance_window():
-
-    root_advance = Tk()
-    root_advance.title("ADVANCE SEARCH MENU")
-    root_advance.geometry("500x500")
-
-    path_search = StringVar()
-    name_search = StringVar()
-    size_search = IntVar()
-
-    label_path = Label(root_advance, text="Enter the Path: ").place(x=20, y=30)
-    box_path = Entry(root_advance, text=path_search).place(x=120, y=30)
-
-    label_search_in = Label(root_advance, text="Search in...").place(x=20, y=60)
-    option_file = Radiobutton(root_advance, value=1, text="File").place(x=20, y=85)
-    option_folder = Radiobutton(root_advance, value=2, text="Folder").place(x=100, y=85)
-    option_both = Radiobutton(root_advance, value=3, text="Folder and File").place(x=180, y=85)
-
-    label_search_by = Label(root_advance, text="Search by: ").place(x=20, y=120)
-    #option_name = Radiobutton(root_advance, value=4, text="By Name").place(x=20, y=145)
-    label_name = Label(root_advance, text="by Name: ").place(x=20, y=150)
-    box_name = Entry(root_advance, text=name_search).place(x=100, y=150)
-
-    label_size = Label(root_advance, text="by Size: ").place(x=20, y=185)
-    box_size = Entry(root_advance, text=size_search).place(x=100, y=185)
-    option_mega = Radiobutton(root_advance, value=5, text="MB ").place(x=80, y=230)
-    option_giga = Radiobutton(root_advance, value=6, text="GB ").place(x=130, y=230)
-    option_kbyte = Radiobutton(root_advance, value=7, text="KB ").place(x=180, y=230)
+try:
+    from tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar, DoubleVar
+except ImportError:
+    from Tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar
 
 
-    button_search = Button(root_advance, text="Search").place(x=300, y=300)
-    button_quit = Button(root_advance, text="Return Menu", command=menu_main).place(x=380, y=300)
-    button_clear = Button(root_advance, text="Clean").place(x=220, y=300)
+class Menu(object):
+
+    def __init__(self):
+        self.searching = Search()
+        #self.list_result = ttk.Treeview()
+        self.list_result=""
+        self.search_window = Tk(screenName="Searcher Dana v1")
+        self.window_width = int(self.search_window.winfo_screenwidth()*0.5)
+        self.window_heigth = int(self.search_window.winfo_screenheight() * 0.9)
+        self.search_path = Entry()
+        self.search_name = Entry()
+        self.search_extension = Entry()
+        self.search_size = Entry()
+        self.search_date = Entry()
+        self.search_owner = Entry()
+
+    """Method returns the window's width size"""
+
+    def get_window_with(self):
+        return self.window_width
+
+    """Method returns the window's heigth size"""
+
+    def get_window_height(self):
+        return self.window_heigth
+
+    def show_menu(self):
+        """Given format to main window"""
+        self.search_window.minsize(width=self.window_width, height=self.window_heigth-15)
+        self.search_window.maxsize(width=self.window_width, height=self.window_heigth)
+        self.search_window.title("Searcher Dana v1")
+        self.format_title_frame()
+        self.format_advance_frame()
+        self.format_table_result()
+        """Active windows"""
+        self.search_window.mainloop()
+
+    def format_title_frame(self):
+        title_font = font.Font(family="Comics", size=18, weight='bold')
+        title_frame = Frame(self.search_window, bd=0)
+        title_frame.grid(column=0, row=0, padx=5, pady=5)
+        title_frame.columnconfigure(0, weight=1)
+        title_frame.rowconfigure(0, weight=1)
+        label_title = Label(title_frame, text="Search files with:", fg="Black", font=title_font, padx=10, pady=15)
+        label_title.grid(column=0, row=0, sticky="W")
+
+    def format_advance_frame(self):
+        """Defining styles for labels"""
+        labels_font = font.Font(family="Sans", size=11)
+        """Formatting the main search frame"""
+        search_frame = Frame(self.search_window, bd=2, width=self.window_width)
+        search_frame.grid(column=0, row=1, padx=(10, 10), pady=(10, 10))
+        search_frame.columnconfigure(0, weight=1)
+        search_frame.rowconfigure(0, weight=1)
+        """Labels"""
+        """Defining the path where to search"""
+        label_path = Label(search_frame, text="Path:", fg="Black", font=labels_font, padx=25)
+        label_path.grid(column=1, row=1, sticky="W")
+        self.search_path = Entry(search_frame, width=45)
+        self.search_path.grid(column=2, row=1, sticky="W")
+        """Defining the name to search"""
+        label_name = Label(search_frame, text="Name:", fg="Black", font=labels_font, padx=25)
+        label_name.grid(column=1, row=2, sticky="W")
+        search_name = Entry(search_frame, width=45)
+        search_name.grid(column=2, row=2, sticky="W")
+        options_name = ttk.Combobox(search_frame, width=15, state="readonly")
+        options_name["values"] = ["Contains", "Exact"]
+        options_name.grid(column=3, row=2, sticky="E")
+        """Defining the type of file to search"""
+        label_extension = Label(search_frame, text="File type:", fg="Black", font=labels_font, padx=25)
+        label_extension.grid(column=1, row=3, sticky="W")
+        search_extension = Entry(search_frame, width=45)
+        search_extension.grid(column=2, row=3, sticky="W")
+        """Defining the files with size to search"""
+        label_size = Label(search_frame, text="Size :", fg="Black", font=labels_font, padx=25)
+        label_size.grid(column=1, row=4, sticky="W")
+        search_size = Entry(search_frame, width=45)
+        search_size.grid(column=2, row=4, sticky="W")
+        options_size = ttk.Combobox(search_frame, width=15, state="readonly")
+        options_size["values"] = ["b", "Kb", "Mb", "Gb"]
+        options_size.grid(column=4, row=4, sticky="E")
+        options_measure = ttk.Combobox(search_frame, width=15, state="readonly")
+        options_measure["values"] = ["Equal", "Greater", "Smaller"]
+        options_measure.grid(column=3, row=4, sticky="E")
+        """Defining the files created on date to search"""
+        label_date = Label(search_frame, text="Created on :", fg="Black", font=labels_font, padx=25)
+        label_date.grid(column=1, row=5, sticky="W")
+        search_date = Entry(search_frame, width=45)
+        search_date.grid(column=2, row=5, sticky="W")
+        """Defining the files that belongs to an owner to search"""
+        label_owner = Label(search_frame, text="Owner :", fg="Black", font=labels_font, padx=25)
+        label_owner.grid(column=1, row=6, sticky="W")
+        search_owner = Entry(search_frame, width=45)
+        search_owner.grid(column=2, row=6, sticky="W")
+        """Actions buttons"""
+        button_search = Button(search_frame, text="Search", command=self.action_search, bg="Light Gray")
+        button_search.grid(column=3, row=8, sticky="E")
+        button_clean_search = Button(search_frame, text="Clean Search fields", command=self.action_clean, bg="Light Gray")
+        button_clean_search.grid(column=4, row=8, sticky="E")
+        button_quit = Button(search_frame, text="Exit Search", command=self.search_window.quit, bg="Black", fg="White")
+        button_quit.grid(column=5, row=8, sticky="E")
+        return search_frame
+
+    def format_table_result(self):
+        result_frame = Frame(self.search_window, width=self.window_width)
+        result_frame.grid(column=0, row=2, padx=(15, 15), pady=(15, 15))
+        """Defining the treeview UI"""
+        self.list_result = ttk.Treeview(result_frame, height=20)
+        self.list_result["columns"] = ("Path", "Size", "Create Date")
+        """Defining the column number"""
+        self.list_result.column("Path", width=100)
+        self.list_result.column("Create Date", width=50)
+        self.list_result.column("Size", width=50)
+        """Defining columns name"""
+        self.list_result.heading("Path", text="Path")
+        self.list_result.heading("Create Date", text="Create Date")
+        self.list_result.heading("Size", text="Size")
+        self.list_result.insert("", 0, text="Line 1", values=("1A", "1B", "1C", "1D"))
+        self.list_result.grid(column=1, row=1, sticky="E")
+        #self.list_result.insert("",1, text="Line 1", values=("1A", "2B", "1C", "1D"))
+        #self.list_result.grid(column=1, row=1, sticky="E")
+        return result_frame
+
+    def action_clean(self):
+        pass
+
+    def action_search(self):
+        print("You press Search button")
+        #print("Path ", self.search_path.get())
+        """Add validators to lunch search process"""
+        options = {"search_path": "C:\\Users\\Administrator\\Documents\\SearchFiles", "search_on": "file", "search_name": "menu"}
+        self.searching.set_options(options)
+        search_results_list = []
+        search_results_list=self.searching.searching()
+        print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
+        for s_result in search_results_list:
+            pass
+        count=1
+        for for_indice in range (len(search_results_list)):
+            print ("ACTION SEARCH ::: ", search_results_list[for_indice].get_name(), "---", search_results_list[for_indice].get_path(),"----", search_results_list[for_indice].get_size())
+            print (for_indice)
+            self.list_result.insert("", count, text="Line 1", values=("1A", "1B", "1C", "1D"))
+            for_indice =+ 1
+            count = count+1
 
 
-
-def menu_main():
-    root=Tk()
-    root.title("SEARCH MENU")
-    root.geometry("300x200")
-    label=Label(root,text="SEARCH MENU").place(x=100,y=20)
-
-    button_basic=Button(root, text="Basic Search", command=print_test).place(x=20,y=70)
-
-    button_advance=Button(root, text="Advance Search", command=open_advance_window).place(x=150,y=70)
-    button_quit = Button(root, text="Quit", command=root.quit).place(x=220,y=140)
-    root.mainloop()
-
-
-menu_main()
-
-
-
+if __name__ == "__main__":
+    search_menu = Menu()
+    search_menu.show_menu()

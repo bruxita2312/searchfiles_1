@@ -1,7 +1,9 @@
-from src.com.jalasoft.search_files.utils.logging import logger
-from src.com.jalasoft.search_files.search.search import SearchBasic
-from src.com.jalasoft.search_files.utils.validator import Validator
 import sys
+
+from src.com.jalasoft.search_files.search.search import SearchBasic
+from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.validator.validator import Validator
+
 
 class Menu:
     '''Muestra un menu y responde a elecciones cuando se ejecuta.'''
@@ -21,6 +23,7 @@ class Menu:
         print(" 2 Search by Extension")
         print(" 3 Search by Size")
         print(" 4 quit")
+
 
     def run(self):
 
@@ -50,6 +53,7 @@ class Menu:
             else:
                 print("miauuuuu")
 
+
     def search_by_name (self):
         search = SearchBasic()
         validator = Validator()
@@ -63,6 +67,8 @@ class Menu:
             search._search_file_by_name(name_search, path_name)
             print("==================================================================================================")
         menu.run()
+
+
 
     def search_by_extension(self):
         search = SearchBasic()

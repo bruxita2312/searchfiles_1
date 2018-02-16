@@ -1,6 +1,7 @@
 from src.com.jalasoft.search_files.utils.search_result import SearchResult
 from src.com.jalasoft.search_files.utils.search_util import *
 from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.validator.validator import Validator
 from os import walk, path, stat
 
 
@@ -41,10 +42,7 @@ class Search(object):
                     add_to_list = self.add_to_results(result)
                     if add_to_list == True:
                         result.set_ftype("file")
-                        #result.set_abspath(path.normpath(search_path))
-                        #print("FILE OWNER ::: ", stat(fil).st_uid)
                         result.set_owner(stat(fil).st_uid)
-                        #result.set_owner(getpwuid(stat(search_path).st_uid).pw_name)
                         results.append(result)
                 except FileNotFoundError :
                     logger.error("FAILED ON FILE::: %s" %fil)
@@ -54,13 +52,10 @@ class Search(object):
                     search_path = path.join(search_path, fil)
                     result.set_name(fil)
                     result.set_path(search_path)
-                    #result.set_size(int(path.getsize(search_path)))
-                    #result.set_cdate(path.getctime(search_path))
                     logger.info("FOLDER :::: %s \t || %s \t || %d \t || %s" %(result.get_name(), result.get_path(),result.get_size(),result.get_cdate()))
                     add_to_list = self.add_to_results(result)
                     if add_to_list == True:
                         result.set_ftype("folder")
-                        #result.set_abspath(path.abspath(search_path))
                         results.append(result)
                 except FileExistsError:
                     logger.error("FAILED ON FOLDER::: %s" % fil)
@@ -68,13 +63,9 @@ class Search(object):
         return results
 
     def add_to_results(self, result):
-        boolean_name = self.search_by_name(result)
         boolean_name = True
-        #boolean_size = self.search_by_size(result)
         boolean_size = True
-        #boolean_ext = self.search_by_extension(result)
         boolean_ext=True
-        #boolean_ctime = self.search_by_date(result)
         boolean_ctime = True
         if boolean_name==True and boolean_ext==True and boolean_size==True and boolean_ctime == True:
             return True

@@ -28,7 +28,7 @@ class Validator:
 
     def empty_validation(self, value):
         if value is None:
-            raise TypeError("Empty value found.")
+            logger.error("Empty value found.")
 
     def is_path(self, value, intentos=0):
         res_path = False
@@ -49,7 +49,6 @@ class Validator:
             extension = path.splitext(value)[1]
             if extension is None:
                 res_file = True
-
             else:
                 res_file = False
                 logger.error("The object is not a directory".format(path))

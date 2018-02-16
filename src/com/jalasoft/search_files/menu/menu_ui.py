@@ -1,6 +1,7 @@
 from src.com.jalasoft.search_files.utils.logging import logger
 from src.com.jalasoft.search_files.search.search import Search
 from src.com.jalasoft.search_files.utils.validator import Validator
+from src.com.jalasoft.search_files.utils.search_util import *
 import sys
 try:
     from tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar, DoubleVar
@@ -12,7 +13,6 @@ class Menu(object):
 
     def __init__(self):
         self.searching = Search()
-        #self.list_result = ttk.Treeview()
         self.list_result=""
         self.search_window = Tk(screenName="Searcher Dana v1")
         self.window_width = int(self.search_window.winfo_screenwidth()*0.5)
@@ -37,7 +37,7 @@ class Menu(object):
     def show_menu(self):
         """Given format to main window"""
         self.search_window.minsize(width=self.window_width, height=self.window_heigth-15)
-        self.search_window.maxsize(width=self.window_width, height=self.window_heigth)
+        self.search_window.maxsize(width=self.window_width*2, height=self.window_heigth)
         self.search_window.title("Searcher Dana v1")
         self.format_title_frame()
         self.format_advance_frame()
@@ -48,7 +48,7 @@ class Menu(object):
     def format_title_frame(self):
         title_font = font.Font(family="Comics", size=18, weight='bold')
         title_frame = Frame(self.search_window, bd=0)
-        title_frame.grid(column=0, row=0, padx=5, pady=5)
+        title_frame.grid(column=0, row=0, padx=2, pady=2)
         title_frame.columnconfigure(0, weight=1)
         title_frame.rowconfigure(0, weight=1)
         label_title = Label(title_frame, text="Search files with:", fg="Black", font=title_font, padx=10, pady=15)
@@ -59,7 +59,7 @@ class Menu(object):
         labels_font = font.Font(family="Sans", size=11)
         """Formatting the main search frame"""
         search_frame = Frame(self.search_window, bd=2, width=self.window_width)
-        search_frame.grid(column=0, row=1, padx=(10, 10), pady=(10, 10))
+        search_frame.grid(column=0, row=1, padx=(5, 5), pady=(5, 5))
         search_frame.columnconfigure(0, weight=1)
         search_frame.rowconfigure(0, weight=1)
         """Labels"""
@@ -98,10 +98,10 @@ class Menu(object):
         search_date = Entry(search_frame, width=45)
         search_date.grid(column=2, row=5, sticky="W")
         """Defining the files that belongs to an owner to search"""
-        label_owner = Label(search_frame, text="Owner :", fg="Black", font=labels_font, padx=25)
-        label_owner.grid(column=1, row=6, sticky="W")
-        search_owner = Entry(search_frame, width=45)
-        search_owner.grid(column=2, row=6, sticky="W")
+        # label_owner = Label(search_frame, text="Owner :", fg="Black", font=labels_font, padx=25)
+        # label_owner.grid(column=1, row=6, sticky="W")
+        # search_owner = Entry(search_frame, width=45)
+        # search_owner.grid(column=2, row=6, sticky="W")
         """Actions buttons"""
         button_search = Button(search_frame, text="Search", command=self.action_search, bg="Light Gray")
         button_search.grid(column=3, row=8, sticky="E")
@@ -112,46 +112,49 @@ class Menu(object):
         return search_frame
 
     def format_table_result(self):
-        result_frame = Frame(self.search_window, width=self.window_width)
-        result_frame.grid(column=0, row=2, padx=(15, 15), pady=(15, 15))
+        result_frame = Frame(self.search_window, width=self.window_width*2, bg="Red")
+        result_frame.grid(column=0, row=2)
         """Defining the treeview UI"""
-        self.list_result = ttk.Treeview(result_frame, height=20)
+        self.list_result = ttk.Treeview(result_frame,selectmode="browse")
+        vsb = ttk.Scrollbar(result_frame, orient="vertical", command=self.list_result.yview)
+        self.list_result.configure(yscrollcommand=vsb.set)
         self.list_result["columns"] = ("Path", "Size", "Create Date")
         """Defining the column number"""
-        self.list_result.column("Path", width=100)
-        self.list_result.column("Create Date", width=50)
-        self.list_result.column("Size", width=50)
+        self.list_result.column("Path", width=250)
+        self.list_result.column("Create Date", width=150)
+        self.list_result.column("Size", width=100)
         """Defining columns name"""
         self.list_result.heading("Path", text="Path")
         self.list_result.heading("Create Date", text="Create Date")
-        self.list_result.heading("Size", text="Size")
-        self.list_result.insert("", 0, text="Line 1", values=("1A", "1B", "1C", "1D"))
-        self.list_result.grid(column=1, row=1, sticky="E")
-        #self.list_result.insert("",1, text="Line 1", values=("1A", "2B", "1C", "1D"))
-        #self.list_result.grid(column=1, row=1, sticky="E")
+        self.list_result.heading("Size", text="Size (Mb)")
+        self.list_result.grid(column=1, row=1, sticky="NSWE")
+        vsb.grid(column=2,row=1,sticky="E")
         return result_frame
 
     def action_clean(self):
         pass
 
     def action_search(self):
-        print("You press Search button")
-        #print("Path ", self.search_path.get())
         """Add validators to lunch search process"""
-        options = {"search_path": "C:\\Users\\Administrator\\Documents\\SearchFiles", "search_on": "file", "search_name": "menu"}
-        self.searching.set_options(options)
+        validate = Validator()
+        """Test search by name"""
+        options = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu_maim", "search_name_options": "Exact"}
+        options1 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "modu", "search_name_options": "Contains"}
+        options2 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu"}
+        """Test search by name and size"""
+        """Test search by name and size"""
+        options3 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(14.0066, "mb"), "search_size_options": "Equal"}
+        options4 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(950, "mb"), "search_size_options": "Greater"}
+        options5 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(35, "mb"), "search_size_options": "Smaller"}
+        self.searching.set_options(options4)
         search_results_list = []
         search_results_list=self.searching.searching()
         print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
         for s_result in search_results_list:
             pass
-        count=1
         for for_indice in range (len(search_results_list)):
-            print ("ACTION SEARCH ::: ", search_results_list[for_indice].get_name(), "---", search_results_list[for_indice].get_path(),"----", search_results_list[for_indice].get_size())
-            print (for_indice)
-            self.list_result.insert("", count, text="Line 1", values=("1A", "1B", "1C", "1D"))
-            for_indice =+ 1
-            count = count+1
+            self.list_result.insert("", for_indice, text=search_results_list[for_indice].get_name(), values=(search_results_list[for_indice].get_path(), size_converter(search_results_list[for_indice].get_size(),"mb"), search_results_list[for_indice].get_cdate()))
+            for_indice = for_indice+ 1
 
 
 if __name__ == "__main__":

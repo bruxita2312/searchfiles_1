@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, time
 
 from os import path
 
@@ -31,13 +31,22 @@ def size_converter(size, type):
 
 def timestamp_to_date(ctime):
     """Function receives a timestamp and returns a formated date"""
-    return date.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
+    return date.fromtimestamp(ctime).strftime('%Y-%m-%d')
+
+def date_to_timestamp(cdate):
+    """Function receives a format date and returns a timestamp"""
+    return time.mktime(datetime.datetime.strptime(cdate, "%Y-%m-%d").timetuple())
 
 def get_extension(apath):
     extension=""
     if path.isfile(apath):
         extension = path.splitext(apath)[1]
     return extension
+
+def get_filename(file, type):
+    new_name =""
+    new_name = file.replace(type,"")
+    return new_name
 
 def get_name(apath):
     filename = ""

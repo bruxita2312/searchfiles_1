@@ -6,7 +6,7 @@ import sys
 try:
     from tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar, DoubleVar
 except ImportError:
-    from Tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar
+    from tkinter import Tk, ttk, font, Frame, Label, Button, Entry, StringVar
 
 
 class Menu_UI(object):
@@ -14,7 +14,7 @@ class Menu_UI(object):
     def __init__(self):
         self.searching = Search()
         self.list_result = ""
-        self.search_window = Tk(screenName="Searcher Dana v1")
+        self.search_window = Tk(screenName="SEARCH")
         self.window_width = int(self.search_window.winfo_screenwidth() * 0.5)
         self.window_heigth = int(self.search_window.winfo_screenheight() * 0.9)
         self.search_path = Entry()
@@ -40,7 +40,7 @@ class Menu_UI(object):
         """Given format to main window"""
         self.search_window.minsize(width=self.window_width, height=self.window_heigth - 15)
         self.search_window.maxsize(width=self.window_width * 2, height=self.window_heigth)
-        self.search_window.title("Searcher Dana v1")
+        self.search_window.title("SEARCH")
         self.format_title_frame()
         self.format_advance_frame()
         self.format_table_result()
@@ -61,6 +61,8 @@ class Menu_UI(object):
     """Method that formatted and packed element for the windows search panel"""
 
     def format_advance_frame(self):
+
+
         """Defining styles for labels"""
         labels_font = font.Font(family="Sans", size=11)
         """Formatting the main search frame"""
@@ -68,41 +70,47 @@ class Menu_UI(object):
         search_frame.grid(column=0, row=1, padx=(5, 5), pady=(5, 5))
         search_frame.columnconfigure(0, weight=1)
         search_frame.rowconfigure(0, weight=1)
+
         """Labels"""
         """Defining the path where to search"""
         label_path = Label(search_frame, text="Path:", fg="Black", font=labels_font, padx=25)
         label_path.grid(column=1, row=1, sticky="W")
         self.search_path = Entry(search_frame, width=45)
         self.search_path.grid(column=2, row=1, sticky="W")
+
         """Defining the name to search"""
         label_name = Label(search_frame, text="Name:", fg="Black", font=labels_font, padx=25)
         label_name.grid(column=1, row=2, sticky="W")
-        search_name = Entry(search_frame, width=45)
-        search_name.grid(column=2, row=2, sticky="W")
-        options_name = ttk.Combobox(search_frame, width=15, state="readonly")
-        options_name["values"] = ["Contains", "Exact"]
-        options_name.grid(column=3, row=2, sticky="E")
+        self.search_name = Entry(search_frame, width=45)
+        self.search_name.grid(column=2, row=2, sticky="W")
+        self.options_name = ttk.Combobox(search_frame, width=15, state="readonly")
+        self.options_name["values"] = ["Contains", "Exact"]
+        self.options_name.grid(column=3, row=2, sticky="E")
+
         """Defining the type of file to search"""
         label_extension = Label(search_frame, text="File type:", fg="Black", font=labels_font, padx=25)
         label_extension.grid(column=1, row=3, sticky="W")
-        search_extension = Entry(search_frame, width=20)
-        search_extension.grid(column=2, row=3, sticky="W")
+        self.search_extension = Entry(search_frame, width=20)
+        self.search_extension.grid(column=2, row=3, sticky="W")
+
         """Defining the files with size to search"""
         label_size = Label(search_frame, text="Size :", fg="Black", font=labels_font, padx=25)
         label_size.grid(column=1, row=4, sticky="W")
-        search_size = Entry(search_frame, width=20)
-        search_size.grid(column=2, row=4, sticky="W")
-        options_size = ttk.Combobox(search_frame, width=15, state="readonly")
-        options_size["values"] = ["b", "Kb", "Mb", "Gb"]
-        options_size.grid(column=4, row=4, sticky="E")
-        options_measure = ttk.Combobox(search_frame, width=15, state="readonly")
-        options_measure["values"] = ["Equal", "Greater", "Smaller"]
-        options_measure.grid(column=3, row=4, sticky="E")
+        self.search_size = Entry(search_frame, width=20)
+        self.search_size.grid(column=2, row=4, sticky="W")
+        self.options_size = ttk.Combobox(search_frame, width=15, state="readonly")
+        self.options_size["values"] = ["b", "Kb", "Mb", "Gb"]
+        self.options_size.grid(column=4, row=4, sticky="E")
+        self.options_measure = ttk.Combobox(search_frame, width=15, state="readonly")
+        self.options_measure["values"] = ["Equal", "Greater", "Smaller"]
+        self.options_measure.grid(column=3, row=4, sticky="E")
+
         """Defining the files created on date to search"""
         label_date = Label(search_frame, text="Created on :", fg="Black", font=labels_font, padx=25)
         label_date.grid(column=1, row=5, sticky="W")
-        search_date = Entry(search_frame, width=20)
-        search_date.grid(column=2, row=5, sticky="W")
+        self.search_date = Entry(search_frame, width=20)
+        self.search_date.grid(column=2, row=5, sticky="W")
+
         """Actions buttons"""
         button_search = Button(search_frame, text="Search", command=self.action_search, bg="Light Gray")
         button_search.grid(column=3, row=8, sticky="E")
@@ -111,6 +119,7 @@ class Menu_UI(object):
         button_quit = Button(search_frame, text="Exit Search", command=self.search_window.quit, bg="Black", fg="White")
         button_quit.grid(column=5, row=8, sticky="E")
         return search_frame
+
 
     """Method that formatted and packed element for the search results"""
 
@@ -123,6 +132,7 @@ class Menu_UI(object):
         self.list_result.configure(yscrollcommand=vsb.set)
         self.list_result["columns"] = ("Path", "Size", "Create Date")
         """Defining the column number"""
+
         self.list_result.column("Path", width=250)
         self.list_result.column("Create Date", width=150)
         self.list_result.column("Size", width=100)
@@ -139,21 +149,32 @@ class Menu_UI(object):
 
     """Method that creates the options map and calls the searching method of the Search class"""
 
+
+    #click Search button
     def action_search(self):
+
         """Add validators to lunch search process"""
+        _path=self.search_path.get()
+        _name = self.search_name.get()
+        _name_option=self.options_name.get()
+        _extension= self.search_extension.get()
+        _size=self.search_size.get()
+        _size_measure = self.options_measure.get()
+        _size_option=self.options_size.get()
+
+        print(_path,_name,_name_option,_extension,_size, _size_option ,_size_measure)
         validate = Validator()
+
         """Test search by name"""
-        options = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu_maim", "search_name_options": "Exact"}
-        options1 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "modu", "search_name_options": "Contains"}
-        options2 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu"}
-        """Test search by size"""
-        options3 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(14.0066, "mb"), "search_size_options": "Equal"}
-        options4 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(950, "mb"), "search_size_options": "Greater"}
-        options5 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(35, "mb"), "search_size_options": "Smaller"}
-        self.searching.set_options(options4)
+        _search_fields={"search_path": _path,"search_on":"file", "search_name": _name,"search_name_name_option": _name_option, "search_by_extension":_extension}
+
+
+        self.searching.set_options(_search_fields)
         search_results_list = []
         search_results_list = self.searching.searching()
         print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
+        for s_result in search_results_list:
+            pass
         for for_indice in range(len(search_results_list)):
             self.list_result.insert("", for_indice, text=search_results_list[for_indice].get_name(), values=(
                 search_results_list[for_indice].get_path(), size_converter(search_results_list[for_indice].get_size(), "mb"), search_results_list[for_indice].get_cdate()))
@@ -163,3 +184,4 @@ class Menu_UI(object):
 if __name__ == "__main__":
     search_menu = Menu_UI()
     search_menu.show_menu()
+

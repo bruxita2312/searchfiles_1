@@ -23,262 +23,166 @@ class Search(object):
         self.search_results = results
 
     def searching(self):
-        logger.info("==========================================\n=====================================")
-        logger.info("=================================\n==============================================")
         logger.info("SEARCHING begin")
         results = []
         if "search_path" not in self.options.keys():
             self.options["search_path"] = "/"
-        logger.info("\n Received options: \n%s" % self.options.keys())
-        logger.info("\n Received values: \n%s" % self.options.items())
-        spath = self.options.get("search_path")
-        logger.info("PATH :: %s" % spath)
-        for search_path, folders, files in walk(spath):
-            if "search_on" in self.options.keys():
-                if self.options.get("search_on") == "file" or self.options.get("search_on") == "both":
-                    for fil in files:
-                        result = SearchResult()
-                        fil_path = path.join(search_path, fil)
-                        result.set_name(fil)
-                        result.set_path(search_path)
-                        result.set_type(get_extension(fil_path))
-                        result.set_ftype("file")
-                        result.set_size(path.getsize(fil_path))
-                        result.set_cdate(timestamp_to_date(path.getctime(fil_path)))
-                        by_name = self.search_by_name(result)
-                        by_size = self.search_by_size(result)
-                        by_ext = self.search_by_extension(result)
-                        if by_name == True and by_size == True and by_ext== True:
-                            logger.info("FILE::: %s :: %s :: %d :: %s" % (result.get_name(), result.get_path(), result.get_size(), result.get_cdate()))
-                            results.append(result)
-                if self.options.get("search_on") == "folder" or self.options.get("search_on") == "both":
-                    for fil in folders:
-                        result = SearchResult()
-                        fil_path = path.join(search_path, fil)
-                        result.set_name(fil)
-                        result.set_path(fil_path)
-                        result.set_ftype("folder")
-                        result.set_size(path.getsize(fil_path))
-                        result.set_cdate(timestamp_to_date(path.getctime(fil_path)))
-                        by_name = self.search_by_name(result)
-                        by_size = self.search_by_size(result)
-                        by_ext = self.search_by_extension(result)
-                        if by_name == True and by_size == True and by_ext == True:
-                            logger.info("FILE::: %s :: %s :: %d :: %s" % (result.get_name(), result.get_path(), result.get_size(), result.get_cdate()))
-                            results.append(result)
-        logger.info("-----------------------------------------------")
-        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
+        for search_path, folders, files in walk(self.options.get("search_path")):
+            for fil in files:
+                result = SearchResult()
+                aux_search_path = path.join(search_path, fil)
+                if path.isfile(aux_search_path):
+                    result.set_name(fil)
+                    result.set_path(search_path)
+                    result.set_type(get_extension(aux_search_path))
+                    result.set_size(int(path.getsize(aux_search_path)))
+                    result.set_cdate(timestamp_to_date(path.getctime(aux_search_path)))
+                    result.set_abspath(aux_search_path)
+                    result.set_ftype("file")
+                    add_to_list = self.add_to_results(result)
+                    if add_to_list == True:
+                        logger.info(":::: %s \t || %s \t || %d \t || %s \t || %s \t || %s" % (result.get_name(), result.get_type(), result.get_size(), result.get_cdate(), result.get_ftype(), result.get_abspath()))
+                        results.append(result)
+            for fil in folders:
+                result = SearchResult()
+                aux_search_path = path.join(search_path, fil)
+                if path.isdir(aux_search_path):
+                    result.set_name(fil)
+                    result.set_path(search_path)
+                    result.set_abspath(aux_search_path)
+                    result.set_size(int(path.getsize(aux_search_path)))
+                    result.set_cdate(path.getctime(aux_search_path))
+                    result.set_ftype("folder")
+                    add_to_list = self.add_to_results(result)
+                    if add_to_list == True:
+                        logger.info("FOLDER:::: %s \t || %s \t || %d \t || %s \t || %s \t || %s" % (result.get_name(), result.get_path(), result.get_size(), result.get_cdate(), result.get_ftype(), result.get_abspath()))
+                        results.append(result)
+        logger.info("SEARCHING RESULT TOTAL ::: %d" % int(len(results)))
         logger.info("SEARCHING end")
-        logger.info("=====================================\n==========================================")
+        logger.info("\n++++++++++++++++++++++++++++++++++++\n====================================\n--------------------------")
         return results
 
-    def search_on(self, result):
-        search_result = result
-        name = get_name(search_result.get_name())
-        if "search_on" in self.options.keys():
-            if self.options.get("search_on") == result.get_ftype():
-                pass
-            if self.options.get("name") in name:
-                return True
-            else:
-                return False
-        else:
+    def add_to_results(self, result):
+        boolean_name = self.search_by_name(result)
+        boolean_size = self.search_by_size(result)
+        boolean_ext = True
+        if path.isfile(result.get_abspath()):
+            boolean_ext = self.search_by_extension(result)
+        boolean_ctime = True
+        if boolean_name == True and boolean_size == True and boolean_ext==True and boolean_ctime==True:
             return True
+        else:
+            return False
 
-    def search_by_name(self, result):
-        search_result = result
-        #name = get_name(search_result.get_name())
-        name = search_result.get_name()
+    """This method allows to make search by name"""
+    def search_by_name(self, search_result):
+        name = ""
+        if path.isfile(search_result.get_abspath()):
+            name = get_filename(search_result.get_name(),search_result.get_type())
+        if path.isdir(search_result.get_abspath()):
+            name = search_result.get_abspath()
         if "search_name" in self.options.keys():
-            if self.options.get("search_name") in name:
-                return True
+            if "search_name_options" in self.options.keys():
+                if self.options.get("search_name_options") == "Exact":
+                    if self.options.get("search_name") == name:
+                        return True
+                    else:
+                        return False
+                elif self.options.get("search_name_options") == "Contains":
+                    if self.options.get("search_name") in name:
+                        return True
+                    else:
+                        return False
+                else:
+                    if self.options.get("search_name") in name:
+                        return True
+                    else:
+                        return False
             else:
-                return False
-        else:
-            return True
-
-    def search_by_size(self, result):
-        search_result = result
-        if "search_size" in self.options.keys():
-            asearch_size = size_converter_to_bytes(self.options.get("search_size"),"mb")
-            if "size_is" in self.options.keys():
-                if self.options.get("size_is") == "greater":
-                    if search_result.get_size() > asearch_size:
-                        return True
-                    else:
-                        return False
-                elif self.options.get("size_is") == "smaller":
-                    if search_result.get_size() < asearch_size:
-                        return True
-                    else:
-                        return False
+                if self.options.get("search_name") in name:
+                    return True
                 else:
                     return False
-            else:
-                if search_result.get_size() == asearch_size:
-                    return True
-                else:
-                    False
         else:
             return True
 
+    """Allows to search by size any file or folder"""
+    def search_by_size(self, search_result):
+        if "search_size" in self.options.keys():
+            if "search_size_options" in self.options.keys():
+                if self.options.get("search_size_options") == "Greater":
+                    if search_result.get_size() >= int(self.options.get("search_size")):
+                        logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
+                            self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                        return True
+                    else:
+                        return False
+                elif self.options.get("search_size_options") == "Smaller":
+                    if search_result.get_size() <= int(self.options.get("search_size")):
+                        logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
+                        self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                        return True
+                    else:
+                        return False
+                else:
+                    if search_result.get_size() == int(self.options.get("search_size")):
+                        return True
+                    else:
+                        return False
+            else:
+                if search_result.get_size() == int(self.options.get("search_size")):
+                    logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
+                        self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                    return True
+                else:
+                    return False
+        else:
+            return True
+
+    """Allows to search by create date any file or folder"""
     def search_by_date(self, result):
         search_result = result
-        if "date" in self.options.keys():
-            if "greater" in self.options.keys():
-                if search_result.get_ctime() > self.options.get("date"):
-                    return True
+        if "search_date" in self.options.keys():
+            if "search_date_options" in self.options.keys():
+                if "Greater" in self.options:
+                    if search_result.get_ctime() > self.options.get("search_date"):
+                        return True
+                    else:
+                        return False
+                elif "Smaller" in self.options:
+                    if search_result.get_ctime() < self.options.get("search_date"):
+                        return True
+                    else:
+                        return False
                 else:
-                    False
-            elif "less" in self.options.keys():
-                if search_result.get_ctime() < self.options.get("date"):
-                    return True
-                else:
-                    False
+                    if search_result.get_ctime() == self.options.get("search_date"):
+                        return True
+                    else:
+                        return False
             else:
-                if search_result.get_ctime() == self.options.get("date"):
+                if search_result.get_ctime() == self.options.get("search_date"):
                     return True
                 else:
-                    False
+                    return False
         else:
             return True
 
+    """Allows to search by extension/filetype any file"""
     def search_by_extension(self, result):
         search_result = result
-        if "type" in self.options.keys():
-            if self.options.get("type") in search_result.get_ftype():
+        if "search_type" in self.options.keys():
+            if self.options.get("search_type") in search_result.get_ftype():
                 return True
             else:
-                False
+                return False
         else:
             return True
 
-
-class SearchBasic(object):
-
-    def __init__(self):
-        pass
-
-    def options(self, option, text=None, spath="/"):
-        logger.info("PATH ::: %s" % spath)
-        logger.info("Text to search ::: %s" % text)
-        if (option == 1):
-            self._search_file_by_name(text, spath)
-        elif (option == 2):
-            self._search_by_size(text, spath)
-        elif (option == 3):
-            pass
-        else:
-            print("Exiting from searcher")
-            logger.info("Exit from basic search")
-            exit(0)
-
-    def _search_file_by_name(self, text, spath):
-        logger.info("Searching files naming %s" % text)
-        results = []
-        for search_path, folders, files in walk(spath):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if str.lower(text) in str.lower(fil):
-                    logger.info("FILE::: %s " % (fil))
-                    rfile = SearchResult()
-                    rfile.set_name(fil)
-                    rfile.set_path(search_path)
-                    rfile.set_size(int(path.getsize(fil_search_path)))
-                    rfile.set_abspath(path.abspath(fil_search_path))
-                    create_date = timestamp_to_date(path.getctime(fil_search_path))
-                    rfile.set_cdate(create_date)
-                    rfile.set_ftype("file")
-                    #print ("%s \t || %s \t || %d \t || %s" %(rfile.get_name(), rfile.get_path(),rfile.get_size(),rfile.get_cdate()))
-                    #print(" "+rfile.get_name()+"\t   || \t   "+rfile.get_path())
-                    results.append(rfile)
-            for fol in folders:
-                fol_search_path = path.join(search_path, fol)
-                #print("FOLDER::: %s :: %s " % (fol, fol_search_path))
-                if str.lower(text) in str.lower(fol):
-                    logger.info("FOLDER::: %s " % (fol))
-                    rfile = SearchResult()
-                    rfile.set_name(fol)
-                    rfile.set_path(search_path)
-                    rfile.set_size(int(path.getsize(fol_search_path)))
-                    rfile.set_abspath(path.abspath(fol_search_path))
-                    create_date = timestamp_to_date(path.getctime(fil_search_path))
-                    rfile.set_cdate(create_date)
-                    rfile.set_ftype("folder")
-                    print(" "+fol+"            FOLDER           "+search_path)
-                    results.append(rfile)
-        logger.info("-----------------------------------------------")
-        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
-        logger.info("===============================================================================")
-        matches= str(len(results))
-        print("******* Total items matched: " + matches + " *******")
-        return results
-
-    def _search_by_ext(self, text, spath):
-        logger.info("Searching files with extension %s" % text)
-        results = []
-        for search_path, folders, files in walk(spath):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                ext = get_extension(fil_search_path)
-                name = get_name(fil_search_path)
-                #print("NAME:::: %s            TYPE::::%s" % (name,ext))
-                if text in ext:
-                    logger.info("FILE ::: %s " % fil_search_path)
-                    rfile = SearchResult()
-                    rfile.set_name(fil)
-                    rfile.set_path(search_path)
-                    rfile.set_size(int(path.getsize(fil_search_path)))
-                    rfile.set_abspath(path.abspath(fil_search_path))
-                    create_date = timestamp_to_date(path.getctime(fil_search_path))
-                    rfile.set_cdate(create_date)
-                    rfile.set_ftype("file")
-                    results.append(rfile)
-        logger.info("-----------------------------------------------")
-        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
-        logger.info("===============================================================================")
-        matches = str(len(results))
-        print("******* Total items matched: " + matches+" *******")
-        return results
-
-    def _search_by_size(self, text, spath):
-        logger.info("Searching files with size %d" % int(text))
-        results = []
-        xfile_size= size_converter_to_bytes(int(text), "mb")
-        print ("SIZE TO SEARCH ::: %d " % xfile_size)
-        for search_path, folders, files in walk(spath):
-            for fil in files:
-                fil_search_path = path.join(search_path, fil)
-                if int(path.getsize(fil_search_path)) >= xfile_size:
-                    c= size_converter(path.getsize(fil_search_path),"mb")
-                    logger.info("FILE::: %s  ::::: SIZE::::: %d" % (fil_search_path, c))
-                    rfile = SearchResult()
-                    rfile.set_name(fil)
-                    rfile.set_path(search_path)
-                    rfile.set_size(int(path.getsize(fil_search_path)))
-                    rfile.set_abspath(path.abspath(fil_search_path))
-                    create_date = timestamp_to_date(path.getctime(fil_search_path))
-                    rfile.set_cdate(create_date)
-                    rfile.set_ftype("file")
-                    results.append(rfile)
-        logger.info("-----------------------------------------------")
-        logger.info("TOTAL RESULTS OF FILES ::: %d  " % len(results))
-        logger.info("===============================================================================")
-        return results
-
-
 if __name__ == "__main__":
-    search = SearchBasic()
-    search.options(1, "sales", "f:\\")
-    search.options(3, "one", "f:\\")
-    search.options(2, 9968, "f:\\")
-    search.options(4)
-
-    # options = {"search_path":"f:/", "search_on":"file","search_name":"menu"}
-    # options2 = {"search_path": "f:/", "search_on": "file", "search_name": "menu","search_size": 1037}
-    # options3 = {"search_path": "f:/", "search_on": "file", "search_name": "menu", "search_size": 1500,"size_is":"greater"}
-    # searcha = SearchAdvance()
-    # searcha.set_options(options)
-    # searcha.searching()
-    # searcha.set_options(options3)
-    # searcha.searching()
+    """Test search by name and size"""
+    options3 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(14.0066,"mb"), "search_size_options":"Equal"}
+    options4 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(950,"mb"),"search_size_options":"Greater"}
+    options5 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(35,"mb"),"search_size_options":"Smaller"}
+    searcha = Search()
+    searcha.set_options(options5)
+    searcha.searching()

@@ -65,18 +65,18 @@ def response_status(self, response_dict):
 
 if __name__ == "__main__":
     # path3 = 'D:\\10. Desk degamboa\desk28072017\\31bb37f3-31b6-430b-8b7f-ee16517ae58e_1.521b6181d1cc5f3acc5ea330125c3e8e.jpeg'
-    path3 = 'C:\\Users\daneiva gamboa\Desktop'
+    path3 = 'C:\\Users'
     path5 = ''
     path0 = "D:\\10. Desk degamboa\\03102016 desktop's files"
 
-validator = Validator()
+    validator = Validator()
 
-#print(validator.is_path(path3, 4))
-#print(validator.is_path(path5))
+    #print(validator.is_path(path3, 4))
+    #print(validator.is_path(path5))
 
-print(validator.is_menu())
-print(validator.is_only_numbers())
-print(validator.is_only_text())
-print(validator.empty_validation())
-print(validator.is_file(path5, 4))
-print(validator.is_file())
+    # print(validator.is_menu())
+    # print(validator.is_only_numbers())
+    # print(validator.is_only_text())
+    # print(validator.empty_validation())
+    # print(validator.is_file(path5, 4))
+    # print(validator.is_file())

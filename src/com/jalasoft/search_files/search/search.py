@@ -68,8 +68,7 @@ class Search(object):
         boolean_ext = True
         if path.isfile(result.get_abspath()):
             boolean_ext = self.search_by_extension(result)
-        boolean_ctime = self.search_by_date(result)
-        #boolean_ctime = True
+        boolean_ctime = True
         if boolean_name == True and boolean_size == True and boolean_ext==True and boolean_ctime==True:
             return True
         else:

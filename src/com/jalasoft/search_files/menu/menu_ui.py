@@ -146,7 +146,7 @@ class Menu_UI(object):
         options = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu_maim", "search_name_options": "Exact"}
         options1 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "modu", "search_name_options": "Contains"}
         options2 = {"search_path": "d:\\MisDocs\\Fundacion\\DevFundamentals2", "search_on": "file", "search_name": "menu"}
-        """Test search by name and size"""
+        """Test search by size"""
         options3 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(14.0066, "mb"), "search_size_options": "Equal"}
         options4 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(950, "mb"), "search_size_options": "Greater"}
         options5 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(35, "mb"), "search_size_options": "Smaller"}
@@ -154,8 +154,6 @@ class Menu_UI(object):
         search_results_list = []
         search_results_list = self.searching.searching()
         print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
-        for s_result in search_results_list:
-            pass
         for for_indice in range(len(search_results_list)):
             self.list_result.insert("", for_indice, text=search_results_list[for_indice].get_name(), values=(
                 search_results_list[for_indice].get_path(), size_converter(search_results_list[for_indice].get_size(), "mb"), search_results_list[for_indice].get_cdate()))

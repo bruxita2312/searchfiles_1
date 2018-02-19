@@ -31,7 +31,7 @@ def size_converter(size, type):
 
 def timestamp_to_date(ctime):
     """Function receives a timestamp and returns a formated date"""
-    return date.fromtimestamp(ctime).strftime('%Y-%m-%d')
+    return date.fromtimestamp(ctime).strftime('%Y-%m-%d %H:%M:%S')
 
 def date_to_timestamp(cdate):
     """Function receives a format date and returns a timestamp"""

@@ -9,6 +9,7 @@ class SearchResult(object):
         self.path = ""
         self.abspath = ""
         self.cdate = ""
+        self.owner=""
 
     def get_name(self):
         return self.name
@@ -31,6 +32,9 @@ class SearchResult(object):
     def get_cdate(self):
         return self.cdate
 
+    def get_owner(self):
+        return self.owner
+
     def set_name(self, name):
         self.name=name
 
@@ -51,3 +55,6 @@ class SearchResult(object):
 
     def set_cdate(self, cdate):
         self.cdate=cdate
+
+    def set_owner(self, owner):
+        self.owner=owner

@@ -71,8 +71,8 @@ class Validator:
         return res_file
 
 
-if __name__ == "__main__":
-    path3 = 'C:\\Users'
-
-    validator = Validator()
-    # print(validator.is_path(path3, 3))
+# if __name__ == "__main__":
+#     path3 = 'C:\\Users'
+#
+#     validator = Validator()
+#     print(validator.is_path(path3, 3))

@@ -14,7 +14,7 @@ class Validator:
         """This method verify that the option entered is a valid option of the menu """
         """:return: Boolean"""
         res_menu_validator = False
-
+        logger.info("Validating menu iop begin")
         if self.is_only_numbers(self, menu):
             if limit >= menu >= 1:
                 res_menu_validator = True
@@ -53,8 +53,9 @@ class Validator:
             else:
                 res_path = False
                 intentos += 1
-        if intentos >= 5:
-            logger.error("Incorrect Path, try " + str(intentos) + " attempts")
+
+                if intentos >= 5:
+                    logger.error("Incorrect Path, try " + str(intentos) + " attempts")
         return res_path
 
     def is_file(self, value, intentos=0):
@@ -69,10 +70,3 @@ class Validator:
                 res_file = False
                 logger.error("The object is not a directory".format(path))
         return res_file
-
-
-# if __name__ == "__main__":
-#     path3 = 'C:\\Users'
-#
-#     validator = Validator()
-#     print(validator.is_path(path3, 3))

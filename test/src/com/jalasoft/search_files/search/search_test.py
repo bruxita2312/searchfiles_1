@@ -12,6 +12,7 @@ def test_a_Search_is_created():
     """
     testing that utils object is being created
     """
+    logger.info(">>> Unit Test: Search  object is created .... starting")
     search_test = Search()
     assert isinstance(search_test, Search)
     logger.info(">>> test_a_Search_is_created: PASSED")

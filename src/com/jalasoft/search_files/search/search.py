@@ -1,6 +1,6 @@
 from src.com.jalasoft.search_files.utils.search_result import SearchResult
 from src.com.jalasoft.search_files.utils.search_util import *
-from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.utils.search_logging import logger
 from os import walk, path
 
 
@@ -112,32 +112,31 @@ class Search(object):
             if "search_size_options" in self.options.keys():
                 if self.options.get("search_size_options") == "Greater":
                     if search_result.get_size() >= int(self.options.get("search_size")):
-                        logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
-                            self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                        logger.info("SEARCH SIZE OPTION GREATER::: True")
                         return True
                     else:
                         return False
                 elif self.options.get("search_size_options") == "Smaller":
                     if search_result.get_size() <= int(self.options.get("search_size")):
-                        logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
-                        self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                        logger.info("SEARCH SIZE OPTION SMALLER ::: True")
                         return True
                     else:
                         return False
                 else:
                     if search_result.get_size() == int(self.options.get("search_size")):
+                        logger.info("SEARCH SIZE OPTION EQUAL ::: True")
                         return True
                     else:
                         return False
             else:
                 if search_result.get_size() == int(self.options.get("search_size")):
-                    logger.info("SEARCH SIZE OPTION ::: \t %d ::: \t %s ::: \t %d \t(%s)" % (
-                        self.options.get("search_size"), self.options.get("search_size_options"), search_result.get_size(), search_result.get_name()))
+                    logger.info("SEARCH SIZE OPTION DEFAULT (EQUAL) ::: True")
                     return True
                 else:
                     return False
         else:
             return True
+
 
     """Allows to search by create date any file or folder"""
     def search_by_date(self, result):
@@ -168,21 +167,15 @@ class Search(object):
             return True
 
     """Allows to search by extension/filetype any file"""
+
     def search_by_extension(self, result):
         search_result = result
-        if "search_type" in self.options.keys():
-            if self.options.get("search_type") in search_result.get_ftype():
+        if "search_by_extension" in self.options.keys():
+            if self.options.get("search_by_extension") in search_result.get_type():
+                logger.info("SEARCH EXTENSION ::: True")
                 return True
             else:
                 return False
         else:
             return True
 
-if __name__ == "__main__":
-    """Test search by name and size"""
-    options3 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(14.0066,"mb"), "search_size_options":"Equal"}
-    options4 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(950,"mb"),"search_size_options":"Greater"}
-    options5 = {"search_path": "e:\\", "search_on": "file", "search_size": size_converter_to_bytes(35,"mb"),"search_size_options":"Smaller"}
-    searcha = Search()
-    searcha.set_options(options5)
-    searcha.searching()

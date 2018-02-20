@@ -62,6 +62,16 @@ class Menu_UI(object):
 
     def format_advance_frame(self):
 
+        self.path_by_default=StringVar()
+        self.path_by_default.set("/Users/dxnis/Documents/pruebamenu")
+        self.options_name_by_default=StringVar()
+        self.options_name_by_default.set("Contains")
+        self.options_size_by_default=StringVar()
+        self.options_size_by_default.set=("Kbyte")
+        self.options_measure_by_default=StringVar()
+        self.options_measure_by_default.set=("Smaller")
+
+
 
         """Defining styles for labels"""
         labels_font = font.Font(family="Sans", size=11)
@@ -75,7 +85,7 @@ class Menu_UI(object):
         """Defining the path where to search"""
         label_path = Label(search_frame, text="Path:", fg="Black", font=labels_font, padx=25)
         label_path.grid(column=1, row=1, sticky="W")
-        self.search_path = Entry(search_frame, width=45)
+        self.search_path = Entry(search_frame, width=45, textvariable=self.path_by_default)
         self.search_path.grid(column=2, row=1, sticky="W")
 
         """Defining the name to search"""
@@ -83,7 +93,7 @@ class Menu_UI(object):
         label_name.grid(column=1, row=2, sticky="W")
         self.search_name = Entry(search_frame, width=45)
         self.search_name.grid(column=2, row=2, sticky="W")
-        self.options_name = ttk.Combobox(search_frame, width=15, state="readonly")
+        self.options_name = ttk.Combobox(search_frame, width=15, state="readonly", textvariable=self.options_name_by_default)
         self.options_name["values"] = ["Contains", "Exact"]
         self.options_name.grid(column=3, row=2, sticky="E")
 
@@ -98,10 +108,10 @@ class Menu_UI(object):
         label_size.grid(column=1, row=4, sticky="W")
         self.search_size = Entry(search_frame, width=20)
         self.search_size.grid(column=2, row=4, sticky="W")
-        self.options_size = ttk.Combobox(search_frame, width=15, state="readonly")
-        self.options_size["values"] = ["b", "Kb", "Mb", "Gb"]
+        self.options_size = ttk.Combobox(search_frame, width=15, state="readonly", textvariable=self.options_size_by_default)
+        self.options_size["values"] = ["byte", "Kbyte", "Mbyte", "Gbyte"]
         self.options_size.grid(column=4, row=4, sticky="E")
-        self.options_measure = ttk.Combobox(search_frame, width=15, state="readonly")
+        self.options_measure = ttk.Combobox(search_frame, width=15, state="readonly", textvariable=self.options_measure_by_default)
         self.options_measure["values"] = ["Equal", "Greater", "Smaller"]
         self.options_measure.grid(column=3, row=4, sticky="E")
 
@@ -114,9 +124,9 @@ class Menu_UI(object):
         """Actions buttons"""
         button_search = Button(search_frame, text="Search", command=self.action_search, bg="Light Gray")
         button_search.grid(column=3, row=8, sticky="E")
-        button_clean_search = Button(search_frame, text="Clean Search fields", command=self.action_clean, bg="Light Gray")
+        button_clean_search = Button(search_frame, text="CLEAN", command=self.action_clean, bg="Light Gray")
         button_clean_search.grid(column=4, row=8, sticky="E")
-        button_quit = Button(search_frame, text="Exit Search", command=self.search_window.quit, bg="Black", fg="White")
+        button_quit = Button(search_frame, text="QUIT", command=self.search_window.quit, bg="Black", fg="White")
         button_quit.grid(column=5, row=8, sticky="E")
         return search_frame
 
@@ -124,11 +134,11 @@ class Menu_UI(object):
     """Method that formatted and packed element for the search results"""
 
     def format_table_result(self):
-        result_frame = Frame(self.search_window, width=self.window_width * 2, bg="Red")
-        result_frame.grid(column=0, row=2)
+        self.result_frame = Frame(self.search_window, width=self.window_width * 2, bg="Gray")
+        self.result_frame.grid(column=0, row=2)
         """Defining the treeview UI"""
-        self.list_result = ttk.Treeview(result_frame, selectmode="browse")
-        vsb = ttk.Scrollbar(result_frame, orient="vertical", command=self.list_result.yview)
+        self.list_result = ttk.Treeview(self.result_frame, selectmode="browse")
+        vsb = ttk.Scrollbar(self.result_frame, orient="vertical", command=self.list_result.yview)
         self.list_result.configure(yscrollcommand=vsb.set)
         self.list_result["columns"] = ("Path", "Size", "Create Date")
         """Defining the column number"""
@@ -141,11 +151,15 @@ class Menu_UI(object):
         self.list_result.heading("Create Date", text="Create Date")
         self.list_result.heading("Size", text="Size (Mb)")
         self.list_result.grid(column=1, row=1, sticky="NSWE")
-        vsb.grid(column=2, row=1, sticky="E")
-        return result_frame
+        vsb.grid(column=2, row=1, sticky="NES")
+        return self.result_frame
 
     def action_clean(self):
-        pass
+        self.path_by_default.set("/Users/dxnis/Documents/pruebamenu")
+        self.search_name.delete(0,'end')
+        self.search_extension.delete(0,'end')
+        self.search_size.delete(0,'end')
+
 
     """Method that creates the options map and calls the searching method of the Search class"""
 
@@ -155,31 +169,28 @@ class Menu_UI(object):
 
         """Add validators to lunch search process"""
         "get all values"
-        _path=self.search_path.get()
-        _name = self.search_name.get()
-        _name_option=self.options_name.get()
-        _extension= self.search_extension.get()
+
         _size=self.search_size.get()
         _size_measure = self.options_measure.get()
         _size_option=self.options_size.get()
 
-        print(_path,_name,_name_option,_extension,_size, _size_option ,_size_measure)
+        #print(_path,_name,_name_option,_extension,_size, _size_option ,_size_measure)
         validate = Validator()
 
         """Test search by name"""
-        _search_general={"search_path": _path,"search_on":"file", "search_name": _name,"search_name_options": _name_option, "search_by_extension":_extension }
+        _search_general={"search_path": self.search_path.get(),"search_on":"file", "search_name": self.search_name.get(),"search_name_options": self.options_name.get(), "search_by_extension":self.search_extension.get(), "search_size": self.search_size.get(), "search_size_options": self.options_measure.get(), }
 
 
         self.searching.set_options(_search_general)
-        search_results_list = []
-        search_results_list.clear()
-        search_results_list = self.searching.searching()
-        print("From UI the number of files/folders retrieved are:::: ", len(search_results_list))
-        for s_result in search_results_list:
+        self.search_results_list = []
+        self.search_results_list.clear()
+        self.search_results_list = self.searching.searching()
+        print("From UI the number of files/folders retrieved are:::: ", len(self.search_results_list))
+        for s_result in self.search_results_list:
             pass
-        for for_indice in range(len(search_results_list)):
-            self.list_result.insert("", for_indice, text=search_results_list[for_indice].get_name(), values=(
-                search_results_list[for_indice].get_path(), size_converter(search_results_list[for_indice].get_size(), "mb"), search_results_list[for_indice].get_cdate()))
+        for for_indice in range(len(self.search_results_list)):
+            self.list_result.insert("", for_indice, text=self.search_results_list[for_indice].get_name(), values=(
+                self.search_results_list[for_indice].get_path(), size_converter(self.search_results_list[for_indice].get_size(), "mb"), self.search_results_list[for_indice].get_cdate()))
             for_indice = for_indice + 1
 
 

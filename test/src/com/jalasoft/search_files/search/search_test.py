@@ -1,18 +1,18 @@
-from os import listdir, walk, getcwd, path
-import unittest
-from src.com.jalasoft.search_files.search import *
+"""""
+This module contain the unit tests for the search module
+"""""
+import pytest
+
+from src.com.jalasoft.search_files.search.search import Search
+from src.com.jalasoft.search_files.utils.logging import logger
 
 
-# noinspection PyUnresolvedReferences
-class SearchTest(unittest.TestCase):
-
-    def test_search_needs_path(self):
-        path = getcwd()
-        search = Search(path)
-        pass
-
-    def test_search_by_name_returns_an_array(self):
-        pass
-
-    def test_search_by_name_return_xxx(self):
-        pass
+@pytest.mark.search
+def test_a_Search_is_created():
+    """
+    testing that utils object is being created
+    """
+    logger.info(">>> Unit Test: Search  object is created .... starting")
+    search_test = Search()
+    assert isinstance(search_test, Search)
+    logger.info(">>> test_a_Search_is_created: PASSED")

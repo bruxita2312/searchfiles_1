@@ -1,3 +1,5 @@
+"""Stores the info of any file or folder returned by searcher"""
+
 
 class SearchResult(object):
 
@@ -5,56 +7,71 @@ class SearchResult(object):
         self.name = ""
         self.type = ""
         self.ftype = ""
-        self.size=0
+        self.size = 0
         self.path = ""
         self.abspath = ""
         self.cdate = ""
-        self.owner=""
 
     def get_name(self):
+        """Returns file/folder name"""
         return self.name
 
     def get_type(self):
+        """Returns the file extension"""
         return self.type
 
     def get_ftype(self):
+        """Returns the object type (file or folder)"""
         return self.ftype
 
     def get_size(self):
+        """Returns the file/folder size"""
         return self.size
 
     def get_path(self):
+        """Returns the file/folder path"""
         return self.path
 
     def get_abspath(self):
+        """Returns the absolute file/folder path"""
         return self.abspath
 
     def get_cdate(self):
+        """Returns the date when file/folder was created"""
         return self.cdate
 
-    def get_owner(self):
-        return self.owner
+    def get_mdate(self):
+        """Returns the date when file/folder was modified"""
+        return self.mdate
 
     def set_name(self, name):
-        self.name=name
+        """Sets the file/folder name"""
+        self.name = name
 
     def set_type(self, type):
-        self.type=type
+        """Sets the file extension"""
+        self.type = type
 
     def set_ftype(self, ftype):
-        self.ftype=ftype
+        """Sets if the stored object type is a file or a folder"""
+        self.ftype = ftype
 
     def set_size(self, size):
-        self.size=size
+        """Sets the file/folder size"""
+        self.size = size
 
-    def set_path(self,path):
-        self.path=path
+    def set_path(self, path):
+        """Sets the file/folder path"""
+        self.path = path
 
     def set_abspath(self, abspath):
+        """Sets the absolute file/folder path"""
         self.abspath = abspath
 
     def set_cdate(self, cdate):
-        self.cdate=cdate
+        """Sets the date when file/folder was created"""
+        self.cdate = cdate
 
-    def set_owner(self, owner):
-        self.owner=owner
+    def set_mdate(self, mdate):
+        """Sets the date when file/folder was modified"""
+        self.mdate = mdate

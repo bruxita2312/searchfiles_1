@@ -33,14 +33,24 @@ class Validator:
     def is_only_text(self, value):
         """This method verify that the value is a text value """
         """:return: Boolean"""
+        res_only_text = False
         if type(value) not in (int, float, complex):
             logger.error("Failed Verification, only a text value should be insert:".format(value))
+            res_only_text = False
+        else:
+            res_only_text = True
+        return res_only_text
 
     def empty_validation(self, value):
         """This method verify that the value is a empty value """
         """:return: Boolean"""
+        res_empty_vale = False
         if value is None:
             logger.error("Empty value found.")
+            res_empty_vale = False
+        else:
+            res_empty_vale = True
+        return res_empty_vale
 
     def is_path(self, value, intentos=0):
         """This method verify that the path is valid """

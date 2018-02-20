@@ -1,6 +1,6 @@
 import os
 import os.path as path
-from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.utils.search_logging import logger
 
 """This class contain methods that will help to validate inputs
 """

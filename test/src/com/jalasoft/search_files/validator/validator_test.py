@@ -3,9 +3,8 @@ This module contain the unit tests for the validator module
 """""
 import pytest
 from definition import CONFIG_PATH
-from src.com.jalasoft.search_files.utils.logging import logger
+from src.com.jalasoft.search_files.utils.search_logging import logger
 from src.com.jalasoft.search_files.validator.validator import Validator
-
 
 @pytest.mark.validator
 def test_a_validator_is_created():
